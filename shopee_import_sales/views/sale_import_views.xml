@@ -62,7 +62,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" position="after">
                     <field name="order_status"/>
                     <field name="cancellation_return_status"/>
@@ -77,7 +77,7 @@
                 <field name="amount_total" position="after">
                     <field name="order_completion_time"/>
                 </field>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -86,7 +86,7 @@
         <field name="name">sale.order.line.tree.extended</field>
         <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="order_id"/>
                 <field name="product_id"/>
                 <field name="parent_sku"/>
@@ -99,7 +99,7 @@
                 <field name="product_weight"/>
                 <field name="total_weight"/>
                 <field name="price_subtotal"/>
-            </tree>
+            </list>
         </field>
     </record>
 
