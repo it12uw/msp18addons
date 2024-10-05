@@ -56,14 +56,14 @@ class SaleOrder(models.Model):
     city = fields.Char(string='Kota/Kabupaten')
     province = fields.Char(string='Provinsi')
     order_completion_time = fields.Datetime(string='Waktu Pesanan Selesai')
-    amount_total = fields.Float(string='Estimasi Total Penghasilan', readonly=True, compute='_amount_all')
+    amount_total = fields.Float(string='Estimasi Total Penghasilan', readonly=True, compute='_compute_amounts')
     
 
     # Untuk Odoo 17 fungsi _amount_all berubah menjadi _compute_amounts
     @api.depends('order_line.price_total')
-    def _amount_all(self):
+    def _compute_amounts(self):
         for order in self:
-            res = super(SaleOrder, self)._amount_all()
+            res = super(SaleOrder, self)._compute_amounts()
         return res
 
     @api.model
