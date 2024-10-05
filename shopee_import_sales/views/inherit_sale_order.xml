@@ -1,0 +1,101 @@
+<odoo>
+    <data>
+        <record id="view_order_tree_custom" model="ir.ui.view">
+            <field name="name">sale.order.tree.custom</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <tree string="Sales Orders - Shopee" decoration-bf="message_needaction==True" decoration-muted="state=='cancel'">
+                    <field name="name"/>
+                    <field name="nomor_pesanan"/>
+                    <field name="order_status"/>
+                    <field name="cancellation_return_status"/>
+                    <field name="tracking_number"/>
+                    <field name="opsi_pengiriman"/>
+                    <field name="shipping_option"/>
+                    <field name="must_ship_before"/>
+                    <field name="order_creation_time"/>
+                    <field name="payment_time"/>
+                    <field name="payment_method"/>
+                    <field name="order_completion_time"/>
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_orders_custom" model="ir.actions.act_window">
+            <field name="name">Sales Orders - Shopee</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form,calendar,graph,pivot,kanban</field>
+            <field name="view_id" ref="view_order_tree_custom"/>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new quotation, the first step of a new sale!
+                </p>
+            </field>
+        </record>
+ 
+        <record id="view_order_form_inherit_shopee" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.shopee</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Menambahkan field pada bagian partner -->
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="nomor_pesanan"/>
+                    <field name="order_creation_time"/>
+                    <field name="order_status"/>
+                </xpath>
+                <!-- Menambahkan field setelah payment term -->
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="opsi_pengiriman"/>
+                    <field name="shipping_option"/>
+                    <field name="must_ship_before"/>
+                    <field name="payment_method"/>
+                    <field name="payment_time"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Shopee Info" name="shopee_info">
+                        <group>
+                            <field name="tracking_number"/>
+                            <field name="opsi_pengiriman"/>
+                            <field name="shipping_option"/>
+                            <field name="cancellation_return_status"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_server_mass_confirm_sale_order" model="ir.actions.server">
+            <field name="name">Mass Confirm Orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">
+                for order in records:
+                    order.action_confirm()
+            </field>
+        </record>
+
+
+        <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+            <field name="name">sale.order.list.select.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="nomor_pesanan" string="Nomor Pesanan" filter_domain="[('nomor_pesanan', 'ilike', self)]"/>
+                    <field name="tracking_number" string="Nomor Resi" filter_domain="[('tracking_number', 'ilike', self)]"/>
+                </field>
+            </field>
+        </record>
+        
+        <menuitem id="menu_sale_order_custom"
+            name="Shopee Orders "
+            action="action_orders_custom"
+            parent="sale.sale_order_menu"
+            sequence="2"/>
+    </data>
+</odoo>

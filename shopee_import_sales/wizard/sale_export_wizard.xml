@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_sale_export_wizard_form" model="ir.ui.view">
+        <field name="name">sale.export.wizard.form</field>
+        <field name="model">sale.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Sale Orders">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="partner_ids" widget="many2many_tags"/>
+                </group>
+                <group>
+                    <field name="export_file" filename="filename" readonly="1"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_export" string="Export" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export Sale Orders</field>
+        <field name="res_model">sale.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_sale_export_wizard"
+              name="Export Sale Orders"
+              action="action_sale_export_wizard"
+              parent="sale.sale_order_menu"
+              sequence="21"/>
+</odoo>

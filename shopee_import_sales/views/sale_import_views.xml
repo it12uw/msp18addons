@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_import_wizard_form" model="ir.ui.view">
+        <field name="name">sale.import.wizard.form</field>
+        <field name="model">sale.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Sale Data">
+                <group>
+                    <field name="file_data"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="import_sales" string="Import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Sale Data</field>
+        <field name="res_model">sale.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_sale_export_wizard_form" model="ir.ui.view">
+        <field name="name">sale.export.wizard.form</field>
+        <field name="model">sale.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Sale Data">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="partner_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="export_file" filename="filename" readonly="1"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_export" string="Export" type="object" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_sale_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export Sale Data</field>
+        <field name="res_model">sale.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_order_tree_extended" model="ir.ui.view">
+        <field name="name">sale.order.tree.extended</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" position="after">
+                    <field name="order_status"/>
+                    <field name="cancellation_return_status"/>
+                    <field name="tracking_number"/>
+                    <field name="opsi_pengiriman"/>
+                    <field name="shipping_option"/>
+                    <field name="must_ship_before"/>
+                    <field name="order_creation_time"/>
+                    <field name="payment_time"/>
+                    <field name="payment_method"/>
+                </field>
+                <field name="amount_total" position="after">
+                    <field name="order_completion_time"/>
+                </field>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Create a new tree view for sale.order.line -->
+    <record id="view_order_line_tree_extended" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.extended</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="order_id"/>
+                <field name="product_id"/>
+                <field name="parent_sku"/>
+                <field name="sku_reference"/>
+                <field name="variation_name"/>
+                <field name="original_price"/>
+                <field name="discounted_price"/>
+                <field name="product_uom_qty"/>
+                <field name="returned_quantity"/>
+                <field name="product_weight"/>
+                <field name="total_weight"/>
+                <field name="price_subtotal"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_sale_import"
+              name="Import Sale Data"
+              action="action_sale_import_wizard"
+              parent="sale.sale_menu_root"
+              sequence="100"/>
+
+    <menuitem id="menu_sale_export"
+              name="Export Sale Data"
+              action="action_sale_export_wizard"
+              parent="sale.sale_menu_root"
+              sequence="101"/>
+</odoo>
