@@ -8,6 +8,7 @@ data yang dapat di import ke dalam modul `Sales` ini menggunakan `csv`, sehingga
 1. Odoo 13 ✅ 
 2. Odoo 14 ✅
 3. Odoo 17 (Menyesuaikan perubahan fungsi & field) ✅
+4. Odoo 18 (Menyesuaikan perubahan fungsi, field & struktur tampilan)
 
 # Author 
 Modul ini dikembangkan oleh Steven Morison (stevencodelab@gmail.com).
