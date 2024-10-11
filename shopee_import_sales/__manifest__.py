@@ -8,7 +8,7 @@
         It handles existing data and creates new records only when necessary.
     """,
     'author': 'Laksamana Morison',
-    'website': 'https://stevencodelab.000webhostapp.com',
+    'website': 'https://stevencodelab.github.io/',
     'depends': ['sale'],
     'data': [
         'security/ir.model.access.csv',
