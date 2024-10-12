@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- template report -->
+    <template id="smp_r_prmntn_benang">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <table class="table table-condensed">
+                        <tr>
+                            <th colspan="12" class="text-center">
+                                <span>
+                                    <h5>PT MAREL SUKSES PRATAMA</h5>
+                                    <h5>FORM PERMINTAAN BENANG SAMPLE DIV KAOS KAKI</h5>
+                                </span>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Kode :</strong>
+                                <t t-esc="msd2"/>
+                            </td>
+                            <td>
+                                <strong>Tgl Bon :</strong>
+                                <t t-esc="tgl_bon"/>
+                            </td>
+                            <td>
+                                <strong>Nama Sample :</strong>
+                                <t t-esc="nama_sample"/>
+                            </td>
+                            <td>
+                                <strong>Needle :</strong>
+                                <t t-esc="needle"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <div>
+                        <span>
+                            <h3>BILL OF MATERIALS :</h3>
+                        </span>
+                    </div>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Nama Benang</th>
+                                <th>jumlah Ambil (KG)</th>
+                                <th>jumlah Ambil (C)</th>
+                                <th>jumlah Sisa (KG)</th>
+                                <th>jumlah Sisa (C)</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="data" t-as="product">
+                                <tr>
+                                    <td>
+                                        <t t-esc="product['name']"/>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <t t-esc="product['qty']"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <table align="center">
+                        <tr style="height:100px">
+                            <td width="390px">Bagian Sample :</td>
+                            <td width="390px">Marketting :</td>
+                            <td>Gudang :</td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td width="390px">..............................</td>
+                            <td width="390px">..............................</td>
+                            <td>..............................</td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

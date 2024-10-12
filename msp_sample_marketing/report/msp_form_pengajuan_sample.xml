@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="msp_sample_marketing_doc">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="data">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="page" style="font-size:12px;">
+                            <h4 style="text-align: center; text-decoration:underline; border-bottom: 1px solid #000; font-weight:bold;">
+                                FORM PENGAJUAN SAMPLE
+                            </h4>
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: #3498DB; color: #fff;">Form</th>
+                                        <th style="background-color: #3498DB; color: #fff;">NO SO</th>
+                                        <th style="background-color: #3498DB; color: #fff;">Marketing</th>
+                                        <th style="background-color: #3498DB; color: #fff;">Brand</th>
+                                        <th style="background-color: #3498DB; color: #fff;">Model</th>
+                                        <th style="background-color: #3498DB; color: #fff;">Tanggal</th>
+                                        <th style="background-color: #3498DB; color: #fff;">Jumlah</th>
+                                        <th style="background-color: #3498DB; color: #fff;">Gramasi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span t-field="data.form"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.sale_id2"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="data.user_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.brand"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.model_sample"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.tanggal"/>
+                                        </td>
+                                        <td t-if="data.jumlah_sample">
+                                            <span t-field="data.jumlah_sample"/>
+                                            <span t-field="data.satuan"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.gramasi_option"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div>
+                                <div class="col-xs-6 pull-left">
+                                    <table class="table table-condensed table-striped">
+                                        <tr>
+                                            <th t-if="data.komposisi_material">Komposisi</th>
+                                            <td t-if="data.komposisi_material">
+                                                <span t-field="data.komposisi_material"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-xs-6 pull-right">
+                                    <table class="table table-condensed table-striped" border='1'>
+                                        <thead border='1'>
+                                            <tr>
+                                                <th rowspan='2' class="text-center">Konstruksi</th>
+                                                <th colspan="2" class="text-center">Stretcth (cm)</th>
+                                                <th colspan="3" class="text-center">Relaxed (cm)</th>
+                                            </tr>
+                                            <tr>
+                                                <!-- <th></th> -->
+                                                <th class="text-center">X</th>
+                                                <th class="text-center">Y</th>
+                                                <th class="text-center">X</th>
+                                                <th class="text-center">Y</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-if="data.gum_relaxed_x">
+                                                <th>Gum</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.gum_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.gum_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.gum_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.gum_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="data.leg_gum_relaxed_x">
+                                                <th>Leg Gum</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="data.leg_gum_atas_relaxed_x">
+                                                <th>Leg Gum Atas</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_atas_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_atas_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_atas_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_atas_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="data.leg_gum_bawah_relaxed_x">
+                                                <th>Leg Gum Bawah</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_bawah_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_bawah_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_bawah_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_gum_bawah_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="data.leg_relaxed_x">
+                                                <th>Leg</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.leg_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="data.foot_relaxed_x">
+                                                <th>Foot</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="data.foot_gum_relaxed_x">
+                                                <th>Foot Gum</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_gum_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_gum_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_gum_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.foot_gum_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                            <tr t-if="data.hell_relaxed_x">
+                                                <th>Hell</th>
+                                                <td class="text-center">
+                                                    <span t-field="data.hell_stretch_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.hell_stretch_y"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.hell_relaxed_x"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-field="data.hell_relaxed_y"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th t-if="data.jarum">Jarum</th>
+                                        <th t-if="data.netto_original_sample">Netto Original Sample</th>
+                                        <th t-if="data.target_gramasi_bruto_sample">Target Gramasi Bruto Sample</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td t-if="data.jarum">
+                                            <span t-field="data.jarum"/>
+                                        </td>
+                                        <td t-if="data.netto_original_sample">
+                                            <span t-field="data.netto_original_sample"/>
+                                        </td>
+                                        <td t-if="data.target_gramasi_bruto_sample">
+                                            <span t-field="data.target_gramasi_bruto_sample"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 2 tabel -->
+                            <table class="table table-condensed table-striped">
+                                <tr t-if="data.mesin">
+                                    <th>Mesin</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.mesin"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.jenis">
+                                    <th>Jenis</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.jenis"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.rib_khusus_knit">
+                                    <th>Rib Khusus Knit</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.rib_khusus_knit"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.rib_cuff">
+                                    <th>Rib Cuff</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.rib_cuff"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.rib_leg_gum_atas">
+                                    <th>Rib Reg Gum Atas</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.rib_leg_gum_atas"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.rib_leg_gum_bawah">
+                                    <th>Rib Leg Gum Bawah</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.rib_leg_gum_bawah"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.rib_foot_gum">
+                                    <th>Rib Foot Gum</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.rib_foot_gum"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.embroidery">
+                                    <th>Embroidery</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.embroidery"/>
+                                    </td>
+                                    <th>Ukuran:</th>
+                                    <td>
+                                        <span t-field="data.ukuran_embroidery"/>
+                                    </td>
+                                    <th>Posisi:</th>
+                                    <td>
+                                        <span t-field="data.posisi_embroidery"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="data.anti_slip">
+                                    <th>Anti Slip</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.anti_slip"/>
+                                    </td>
+                                    <th>Ukuran:</th>
+                                    <td>
+                                        <span t-field="data.ukuran_anti_slip"/>
+                                    </td>
+                                    <th>Posisi:</th>
+                                    <td>
+                                        <span t-field="data.posisi_anti_slip"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="data.jahit_no_show">
+                                    <th>Jahit No Show</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.jahit_no_show"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.posisi_logo">
+                                    <th>Posisi Logo</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.posisi_logo"/>
+                                    </td>
+                                    <th>Ukuran Logo :</th>
+                                    <td>
+                                        <span t-field="data.ukuran_logo"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.target_finish_sample">
+                                    <th>Target Finish Sample</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.target_finish_sample"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.lokasi_folder_file_soft_copy">
+                                    <th>Lokasi Folder File Soft Copy</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.lokasi_folder_file_soft_copy"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.material_packing">
+                                    <th>Material Packing</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.material_packing"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr t-if="data.informasi_lainnya">
+                                    <th>Informasi Lainnya</th>
+                                    <td>:</td>
+                                    <td>
+                                        <span t-field="data.informasi_lainnya"/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <img t-att-src="'/msp_sample_marketing/static/description/gambah_kk_sample_sales.jpg'" Style="width:250px;height:250px"/>
+                            <div t-if="data.gambar_sample_marketing" class="col-xs-2">
+                                <span t-field="data.gambar_sample_marketing" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;,'style':'width:250px ;height: 250px'}"/>
+                            </div>
+                        </div>
+                        <xpath expr="//p[@t-field='o.notes']" position="after">
+                                    <div class="last-page" style="position:relative;font-size:12px;margin-top:100px;">
+                                        <table>
+                                            <tr>
+                                                <td style="line-height: 1.6;" width="85%">
+                                                    <br/><br/><br/>
+                                                    <strong>Sales Person</strong>
+                                                    <br/><br/><br/><br/> <br/><br/><br/>
+                                                    (..................................)
+                                                    <br/>
+                                                    <br/>
+                                                </td>
+                                                <td style="text-align:left" width="20%">
+                                                    <strong>Yogyakarta, <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" /></strong>
+                                                    <br/><br/><br/>
+                                                    <strong>Sales Person</strong>
+                                                    <br/><br/><br/><br/> <br/><br/><br/>
+                                                    (..................................)
+                                                    <br/>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </xpath>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

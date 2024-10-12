@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_msp_sample_marketing_all,msp.sample.marketing,model_msp_sample_marketing,base.group_user,1,1,1,1

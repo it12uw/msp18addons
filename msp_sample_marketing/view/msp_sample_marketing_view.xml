@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- data sample gramasi -->
+        <record id="view_marel_in_sample_marketing_tree" model="ir.ui.view">
+            <field name="name">msp.sample.marketing.tree</field>
+            <field name="model">msp.sample.marketing</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Pengajuan Sample Marketing">
+                    <field name="name"/>
+                    <field name="form"/>
+                    <field name="user_id"/>
+                    <field name="tanggal"/>
+                    <field name="brand"/>
+                    <field name="model_sample"/>
+                    <field name="gramasi_option"/>
+                </list>
+            </field>
+        </record>
+        <record id="view_marel_in_sample_marketing_form" model="ir.ui.view">
+            <field name="name">msp.sample.marketing.form</field>
+            <field name="model">msp.sample.marketing</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Data Sample">
+                    <sheet>
+                        <div class="oe_title">
+                            <p style="font-size:20px; font-weight:bold;">Produk Sample</p>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="form"/>
+                                <field name="sale_id2"/>
+                                <field name="user_id"/>
+                                <field name="jumlah_sample"/>
+                                <field name="satuan"/>
+                                <field name="tanggal"/>
+                                <field name="brand"/>
+                                <field name="model_sample"/>
+                                <field name="gramasi_option"/>
+                                <field name="standar"/>
+                                <field name="komposisi_material"/>
+                                <field name="jarum"/>
+                                <field name="target_gramasi_bruto_sample"/>
+                                <field name="netto_original_sample"/>
+                                <field name="mesin"/>
+                                <field name="jenis"/>
+                                <field name="rib_khusus_knit"/>
+                                <field name="rib_cuff"/>
+                            </group>
+                            <group>
+                                <field name="rib_leg_gum_atas"/>
+                                <field name="rib_leg_gum_bawah"/>
+                                <field name="rib_foot_gum"/>
+                                <field name="embroidery"/>
+                                <field name="ukuran_embroidery"/>
+                                <field name="posisi_embroidery"/>
+                                <field name="anti_slip"/>
+                                <field name="ukuran_anti_slip"/>
+                                <field name="posisi_anti_slip"/>
+                                <field name="jahit_no_show"/>
+                                <field name="posisi_logo"/>
+                                <field name="ukuran_logo"/>
+                                <field name="target_finish_sample"/>
+                                <field name="lokasi_folder_file_soft_copy"/>
+                                <field name="material_packing"/>
+                                <field name="informasi_lainnya"/>
+                            </group>
+                            <group>
+                                <group name="main_grp_1" colspan="2">
+                                    <group name="main_grp_col_1">
+                                        <field name="gum_stretch_x"/>
+                                        <field name="gum_stretch_y"/>
+                                        <field name="gum_relaxed_x"/>
+                                        <field name="gum_relaxed_y"/>
+                                    </group>
+                                    <group name="main_grp_col1">
+                                        <field name="leg_gum_stretch_x"/>
+                                        <field name="leg_gum_stretch_y"/>
+                                        <field name="leg_gum_relaxed_x"/>
+                                        <field name="leg_gum_relaxed_y"/>
+                                    </group>
+                                </group>
+                                <group name="main_grp_2" colspan="2">
+                                    <group name="main_grp_col_2">
+                                        <field name="leg_stretch_x"/>
+                                        <field name="leg_stretch_y"/>
+                                        <field name="leg_relaxed_x"/>
+                                        <field name="leg_relaxed_y"/>
+                                    </group>
+                                    <group name="main_grp_col2">
+                                        <field name="foot_stretch_x"/>
+                                        <field name="foot_stretch_y"/>
+                                        <field name="foot_relaxed_x"/>
+                                        <field name="foot_relaxed_y"/>
+                                    </group>
+                                </group>
+                                <group name="main_grp_3" colspan="2">
+                                    <group name="main_grp_col_3">
+                                        <field name="foot_gum_stretch_x"/>
+                                        <field name="foot_gum_stretch_y"/>
+                                        <field name="foot_gum_relaxed_x"/>
+                                        <field name="foot_gum_relaxed_y"/>
+                                    </group>
+                                    <group name="main_grp_col3">
+                                        <field name="hell_stretch_x"/>
+                                        <field name="hell_stretch_y"/>
+                                        <field name="hell_relaxed_x"/>
+                                        <field name="hell_relaxed_y"/>
+                                    </group>
+                                </group>
+                                <group name="main_grp_4" colspan="2">
+                                    <group name="main_grp_col_3">
+                                        <field name="leg_gum_atas_stretch_x"/>
+                                        <field name="leg_gum_atas_stretch_y"/>
+                                        <field name="leg_gum_atas_relaxed_x"/>
+                                        <field name="leg_gum_atas_relaxed_y"/>
+                                    </group>
+                                    <group name="main_grp_col3">
+                                        <field name="leg_gum_bawah_stretch_x"/>
+                                        <field name="leg_gum_bawah_stretch_y"/>
+                                        <field name="leg_gum_bawah_relaxed_x"/>
+                                        <field name="leg_gum_bawah_relaxed_y"/>
+                                    </group>
+                                </group>
+                            </group>
+                            <group>
+                                <field name='gambar_sample_marketing' widget="image" class="oe_avatar" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
