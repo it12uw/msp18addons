@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="merk_type_mesin_tree_view" model="ir.ui.view">
+            <field name="name">merk.type.mesin.tree.view</field>
+            <field name="model">merk.mesin.produksi</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="merk_mesin"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="merk_type_mesin_form_view" model="ir.ui.view">
+            <field name="name">merk.type.mesin.form.view</field>
+            <field name="model">merk.mesin.produksi</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="merk_mesin"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

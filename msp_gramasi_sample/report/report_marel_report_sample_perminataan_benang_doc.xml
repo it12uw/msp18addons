@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+    <template id="report_marel_report_sample_perminataan_benang_doc">
+        <t t-call="web.internal_layout">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <div class="page oe_purchase_font_title">
+                <div class="oe_structure"/>
+                <table align="center" >
+                    <tr>
+                        <td>PT MAREL SUKSES PRATAMA</td>
+                    </tr>
+                    <tr>
+                        <td>FORM PERMINTAAN BENANG DIV KAOS KAKI</td>
+                    </tr>
+                </table>
+                <br/>
+                <br/>
+                <table>
+                    <tr>
+                        <td>Tanggal </td>
+                        <td>:</td>
+                        <td>
+                            <span t-field="o.tgl"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nama Desain</td>
+                        <td>:</td>
+                        <td>
+                            <span t-field="o.nama_desain_sample"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Needle</td>
+                        <td>:</td>
+                        <td>
+                            <span t-field="o.needle"/>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Nama Benang</th>
+                            <th class="text-right">Jumlah Ambil Kg</th>
+                            <th class="text-right">Jumlah Ambil Connes</th>
+                            <th class="text-right">Jumlah Sisa Kg</th>
+                            <th class="text-right">Jumlah Sisa Connes</th>
+                            <th class="text-right">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+                        <tr t-foreach="o.permintaan_benang_sample_list_line" t-as="l">
+                            <td class="text-left">
+                                <span t-field="l.product_template_id"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="l.jmlh_ambil_kg"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="l.jmlh_ambil_connes"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="l.jmlh_sisa_kg"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="l.jmlh_sisa_connes"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="l.keterangan"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <table align="center" >
+                    <tr style="height:100px">
+                        <td width="500px">Bagian Sample : </td>
+                        <td width="400px">Marketting :</td>
+                        <td width="100px">Bagian Gudang :</td>
+                    </tr>
+                    <tr style="height:30px">
+                        <td width="500px">(..............................)</td>
+                        <td width="400px">(..............................)</td>
+                        <td width="100px">(..............................)</td>
+                    </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+</flectra>

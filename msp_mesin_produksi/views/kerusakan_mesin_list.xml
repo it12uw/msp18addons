@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_kerusakan_list_mesin_search" model="ir.ui.view">
+            <field name="name">kerusakan.list.mesin.search</field>
+            <field name="model">kerusakan.list.mesin</field>
+            <!-- <field name="act_window_id" ref="marel_mesin_kerusakan.action_kerusakan_mesin_list_window"/> -->
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="To Do" name="todo" domain="[('state','in',('draft','open'))]" />
+                    <separator/>
+                    <filter string="Done" name="done" domain="[('jam_perbaikan_selesai','=','True')]"/>
+                    <separator/>
+                </search>
+            </field>
+        </record>
+        <record id="view_kerusakan_list_mesin_tree" model="ir.ui.view">
+            <field name="name">kerusakan.list.mesin.tree</field>
+            <field name="model">kerusakan.list.mesin</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Data Mesin Rusak">
+                    <field name="mesin_produksi_id"/>
+                    <field name="jam_create"/>
+                    <!-- <field name="waktu_mulai" widget="float_time"/>
+                    <field name="waktu_selesai" widget="float_time"/> -->
+                    <field name="jam_mulai_perbaikan" />
+                    <field name="jam_perbaikan_selesai"/>
+                    <field name="selesai_perbaikan"/>
+                    <field name="jenis_kerusakan_mesinmarel_line"/>
+                    <field name="note"/>
+                </list>
+            </field>
+        </record>
+        <record id="view_kerusakan_list_mesin_form" model="ir.ui.view">
+            <field name="name">kerusakan.list.mesin.form</field>
+            <field name="model">kerusakan.list.mesin</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Jenis Kerusakan">
+                    <header>
+                        <button name="action_confrim" type="object" string="Run" class="btn‐primary"/>
+                        <button name="action_cancel" type="object" string="Cancel" calss="oe_link"/>
+                        <button name="action_done" type="object" string="Done" class="btn-success"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="mesin_produksi_id"/>
+                            <field name="jam_create"/>
+                            <field name="jam_mulai_perbaikan" />
+                            <field name="jam_perbaikan_selesai"/>
+                            <field name="selesai_perbaikan"/>
+                            <field name="note"/>
+                        </group>
+                        <notebook>
+                            <page string="Jenis Kerusakan">
+                                <field name="jenis_kerusakan_mesinmarel_line">
+                                    <list string="Status Servise Kerusakan Mesin">
+                                        <field name="jenis_kerusakan_mesinmarel_id"/>
+                                        <field name="selesai"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- <button name="action_belum_selesai" type="object" string="Mulai" class="btn-info"/>
+                            <button name="action_selesai" type="object" string="Selesai" class="btn-success"/> -->
+
+        <!-- jenis.kerusakan.mesinmarellist -->
+        <record id="view_jenis_kerusakan_mesinmarellist_form" model="ir.ui.view">
+            <field name="name">jenis.kerusakan.mesinmarellist.form</field>
+            <field name="model">jenis.kerusakan.mesinmarellist</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Jenis Kerusakan">
+                    <sheet>
+                        <group>
+                            <field name="jenis_kerusakan_mesinmarel_id"/>
+                            <field name="selesai"/>
+                        </group>
+                        <notebook>
+                            <page string="Nama Teknisi Yang Servis">
+                                <field name="nama_teknisi_line">
+                                    <list string="Kerusakan Mesin">
+                                        <field name="nama_teknisi_ids"/>
+                                        <field name="selesai"/>
+                                        <field name="blm_selesai"/>
+                                        <field name="jam_mulai_perbaikan"/>
+                                        <field name="jam_perbaikan_selesai"/>
+                                        <field name="timer_duration"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                        <button name="action_selesai" type="object" string="Selesai" class="btn-success"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- nama.teknisi.mesin.list -->
+        <record id="view_jenis_kerusakan_mesin_marel_list_form" model="ir.ui.view">
+            <field name="name">nama.teknisi.mesin.list.form</field>
+            <field name="model">nama.teknisi.mesin.list</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Hasil Kerja Teknisi">
+                    <sheet>
+                        <group>
+                            <field name="nama_teknisi_ids"/>
+                            <field name="shift"/>
+                            <field name="jam_mulai_perbaikan"/>
+                            <field name="jam_perbaikan_selesai"/>
+                            <field name="selesai"/>
+                            <field name="blm_selesai"/>
+                            <field name="timer_duration"/>
+                        </group>
+                        <button name="action_jam_mulai" type="object" string="Mulai Perbaikan" class="btn btn-outline-primary"/>
+                        <button name="action_jam_selesai" type="object" string="Selesai Perbaikan" class="btn btn-outline-success"/>
+                        <button name="action_belum_selesai" type="object" string="Belum Selesai" class="btn btn-outline-danger"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

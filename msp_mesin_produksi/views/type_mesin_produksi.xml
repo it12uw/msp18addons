@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="type_mesin_produksi_tree_view" model="ir.ui.view">
+            <field name="name">type.mesin.produksi.tree.view</field>
+            <field name="model">type.mesin.produksi</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="type_mesin" decoration-bf="1"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="type_mesin_produksi_form_view" model="ir.ui.view">
+            <field name="name">type.mesin.produksi.form.view</field>
+            <field name="model">type.mesin.produksi</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="type_mesin" decoration-bf="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
