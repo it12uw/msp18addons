@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_msp_tanda_terima_tagihan_all,msp.tanda.terima.tagihan,model_msp_tanda_terima_tagihan,base.group_user,1,1,1,1
+access_msp_tandaterima_tagihan_line_all,msp.tandaterima.tagihan.line,model_msp_tandaterima_tagihan_line,base.group_user,1,1,1,1

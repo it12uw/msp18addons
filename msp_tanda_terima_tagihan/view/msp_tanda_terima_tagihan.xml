@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_msp_tanda_terima_tagihan_tree" model="ir.ui.view">
+            <field name="name">msp.tanda.terima.tagihan.tree</field>
+            <field name="model">msp.tanda.terima.tagihan</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Tanda Penerima Tagihan">
+                    <field name="name"/>
+                    <field name="tanggal"/>
+                    <field name="nama_ttd"/>
+                    <field name="nama_pengirim"/>
+                    <field name="keterangan"/>
+                    <field name="total_nominal"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_msp_tanda_terima_tagihan_form" model="ir.ui.view">
+            <field name="name">msp.tanda.terima.tagihan.form</field>
+            <field name="model">msp.tanda.terima.tagihan</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tanda Penerima Tagihan">
+                    <sheet>
+                        <group>
+                            <field name="name" readonly="1" />
+                            <group>
+                                <field name="tanggal"/>
+                                <field name="nama_ttd"/>
+                                <field name="nama_pengirim"/>
+                                <field name="total_nominal"/>
+                                <field name="keterangan"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Keterangan">
+                                <field name="msp_tanda_terima_tagihan_line_ids">
+                                    <tree string="Keterangan" editable="bottom">
+                                        <field name="keterangan"/>
+                                        <field name="nominal" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

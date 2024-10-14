@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data noupdate="0">
+        <template id="msp_tanda_terima_tagihan_doc">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <div class="page oe_purchase_font_title">
+                    <div class="oe_structure"/>
+                    <h3 class="text-center">
+                        <span >FORM TANDA TERIMA</span>
+                        <span t-field="o.keterangan"></span>
+                    </h3>
+                    <br/>
+                    <br/>
+                    <table>
+                        <tr>
+                            <span>
+                                <td>No </td>
+                            </span>
+                            <span>
+                                <td>:</td>
+                            </span>
+                            <td>
+                                <span t-field="o.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <span>
+                                <td>Tanggal </td>
+                            </span>
+                            <span>
+                                <td>:</td>
+                            </span>
+                            <td>
+                                <span t-field="o.tanggal" t-options="{&quot;format&quot;: &quot;dd-MM-yyyy&quot;}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <span>
+                                <td>Telah Terima Dari </td>
+                            </span>
+                            <span>
+                                <td>:</td>
+                            </span>
+                            <td>
+                                <span t-field="o.nama_pengirim"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-left">No Dokumen</th>
+                                <th class="text-left">Keterangan</th>
+                                <th class="text-left">Nominal</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <tr t-foreach="o.msp_tanda_terima_tagihan_line_ids" t-as="l">
+                                <td class="text-left">
+                                    <span t-field="l.no_dokumen"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="l.keterangan"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="l.nominal"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text-right">Total :</td>
+                                <td class="text-left">
+                                    <span t-field="o.total_nominal"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="oe_structure"/>
+                    <table align="center">
+                        <tr style="height:100px">
+                            <td width="400px"></td>
+                            <td width="300px"></td>
+                            <td width="300px">Diterima Oleh :</td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td width="400px"></td>
+                            <td width="300px"></td>
+                            <td width="300px">
+                                <span t-field="o.nama_ttd"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <!-- template semua record-->
+    </data>
+</odoo>
