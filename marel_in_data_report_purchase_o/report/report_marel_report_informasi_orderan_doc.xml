@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="report_marel_report_informasi_orderan_doc">
+            <!--<t t-foreach="docs" t-as="o"> jika membuat sendiri harus didefinisikan bukan o dan tidak 
+                menggunakan t-forech karena tidak looping data namun jika mau luping data maka bisa menggunakan loopin data
+            -->
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>
+								Document ID
+                                </th>
+                                <th>
+								Page
+                                </th>
+                                <th>
+								Revision No
+                                </th>
+                                <th>
+								Revision Date
+                                </th>
+                                <th>
+								Effective Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MSP/F/P/MK/01.05</td>
+                                <td>1 Dari 1</td>
+                                <td>-</td>
+                                <td> -</td>
+                                <td>1 Febuari 2019</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span>
+                        <h4>
+										FORM INFORMASI ORDER
+                        </h4>
+                    </span>
+                    <br/>
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <td>No SO</td>
+                                <td>No MO</td>
+                                <td>Type KK</td>
+                                <td>Tgl Kirim</td>
+                                <td>Customer</td>
+                                <td>Artikel</td>
+                                <td>Style</td>
+                                <td>Warna</td>
+                                <td>Size</td>
+                                <td>Qty</td>
+                            </tr>
+                        </thead>
+                        <t t-foreach="docs" t-as="o">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-field="o.origin"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.product_tmpl_id.type_kk"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.sale_id2.requested_date" />
+                                    </td>
+                                    <td>
+                                        <span t-field="o.sale_id2.partner_id" />
+                                    </td>
+                                    <td>
+                                        <!-- <span t-field="o.product_tmpl_id.name"/> -->
+                                        <span t-field="o.product_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.product_tmpl_id.style"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.product_tmpl_id.warna"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.product_tmpl_id.size"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="'{0:.2f}'.format(o.product_qty)"/>
+                                        <span t-field="o.product_uom_id"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="marel_in_data_report_purchase_o" inherit_id="purchase.report_purchaseorder_document">
+            <xpath expr="//div[hasclass('oe_structure')][last()]" position="after">
+                <table>
+                    <tr>
+                        <td>Hormat Kami,</td>
+                        <td/>
+                        <td>Disetujui,</td>
+                    </tr>
+                    <tr style="height:100px">
+                        <td>PT. Marel Sukses Pratama</td>
+                        <td/>
+                        <td/>
+                    </tr>
+
+                    <tr style="height:50px">
+                        <td>Wati</td>
+                        <td/>
+                        <td>Martin Lukas / Erli Faniwati</td>
+                    </tr>
+                    <tr >
+                        <td>Harap ditandatangani setelah P.O. diterima dan fax kembali ke PT. Marel S.P. ke no. 0274-867313</td>
+                        <td/>
+                        <td/>
+                    </tr>
+                    <tr style="height:100px">
+                        <td>Received by,</td>
+                        <td/>
+                        <td/>
+                    </tr>
+                    <tr>
+                        <td>(..........................)</td>
+                        <td/>
+                        <td/>
+                    </tr>
+                </table>
+            </xpath>
+        </template>
+    </data>
+</odoo>

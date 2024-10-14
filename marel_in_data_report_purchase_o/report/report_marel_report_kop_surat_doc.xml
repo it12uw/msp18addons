@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_marel_report_kop_surat_doc">
+		<t t-call="web.html_container">
+			<t t-call="web.internal_layout">
+				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+				<!-- <t t-if="o.state not in ['draft','confirmed','waiting','assigned','cancel']"> -->
+				<div class="row">
+					<div class="col-3 mb4">
+						<img t-att-src="'/marel_in_data_report_purchase_o/static/description/housesock.jpeg'" style="max-height: 80px;" alt="Logo"/>
+					</div>
+					<div class="col-8 text-right" style="margin-top:22px;" t-field="o.company_id.report_header" name="moto"/>
+				</div>
+				<div t-if="o.company_id.logo or o.company_id.report_header" class="row zero_min_height">
+					<div class="col-12">
+						<div style="border-bottom: 1px solid black;"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6" name="company_address">
+						<h4> House Of Socks </h4>
+						<div t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+						<img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px;" alt="Barcode"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-5 pull-right">
+						<span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile"], "no_marker": True}' />
+					</div>
+				</div>
+				<div class="row mt48 mb32">
+					<div t-if="o.carrier_id" class="col-xs-3" name="div_origin">
+						<strong>Carrier :</strong>
+						<p t-field="o.carrier_id"/>
+					</div>
+					<div t-if="o.carrier_tracking_ref" class="col-xs-3" name="div_origin">
+						<strong>Tracking Reference :</strong>
+						<p t-field="o.carrier_tracking_ref"/>
+					</div>
+					<div t-if="o.origin" class="col-xs-3" name="div_origin">
+						<strong>Sorce Doc :</strong>
+						<p t-field="o.origin"/>
+					</div>
+				</div>
+				<!-- </t> -->
+			</t>
+		</t>
+	</template>
+	<template id="report_kop_surat">
+		<t t-foreach="docs" t-as="o">
+			<t t-call="marel_in_data_report_purchase_o.report_marel_report_kop_surat_doc" t-lang="o.partner_id.lang" />
+		</t>
+	</template>
+</odoo>
