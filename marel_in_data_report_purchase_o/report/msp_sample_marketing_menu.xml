@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="action_marel_report_po_konfirmasi_pesanan_report" model="sale.order" string="Report Konfirmasi Pesanan" report_type="qweb-pdf" name="marel_in_data_report_purchase_o.marel_report_po_konfirmasi_pesanan_report" file="purchase.marel_report_po" attachment_use="True"/>
+        <record id="action_marel_report_po_konfirmasi_pesanan_report" model="ir.actions.report">
+            <field name="name">Report Konfirmasi Pesanan</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_konfirmasi_pesanan_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_konfirmasi_pesanan_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="action_marel_report_po_konfirmasi_pesanan_report_sale" model="sale.order" string="Report Konfirmasi Pesanan Sale" report_type="qweb-pdf" name="marel_in_data_report_purchase_o.marel_report_po_konfirmasi_pesanan_report_sale" file="purchase.marel_report_po" attachment_use="True"/>
+        <record id="action_marel_report_po_konfirmasi_pesanan_report_sale" model="ir.actions.report">
+            <field name="name">Report Konfirmasi Pesanan Sale</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_konfirmasi_pesanan_doc_sale</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_konfirmasi_pesanan_doc_sale</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="action_marel_report_po_konfirmasi_order_report" model="sale.order" string="Report Informasi Order" report_type="qweb-pdf" name="marel_in_data_report_purchase_o.marel_report_marel_report_po_informasi_order_report" file="purchase.marel_report_po" attachment_use="True"/>
+        <record id="action_marel_report_po_informasi_order_report" model="ir.actions.report">
+            <field name="name">Report Informasi Order</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_informasi_order_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_informasi_order_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="action_marel_report_po" model="purchase.order" string="Report PO" report_type="qweb-pdf" name="marel_in_data_report_purchase_o.marel_report_po_aksesoris_report" file="purchase.marel_report_po" attachment_use="True"/>
+        <record id="action_marel_report_po" model="ir.actions.report">
+            <field name="name">Report PO</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_aksesoris_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_aksesoris_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="action_marel_report_po_import" model="purchase.order" string="Report PO" report_type="qweb-pdf" name="marel_in_data_report_purchase_o.marel_report_po_aksesoris_report" file="purchase.marel_report_po" attachment_use="True"/>
+        <record id="action_marel_report_po_import" model="ir.actions.report">
+            <field name="name">Report PO Import</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_import_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_import_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="marel_report_po_spare_parts_lokal" string="Print PO lokal" report_type="qweb-pdf" model="purchase.order" file="purchase.marel_report_po" name="marel_in_data_report_purchase_o.marel_report_po_spare_parts_lokal_report" />
+        <record id="action_marel_report_po_spare_part_lokal" model="ir.actions.report">
+            <field name="name">Report PO Lokal</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_lokal_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_lokal_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="marel_report_po_aksesoris_draff" string="Print Draff PO" report_type="qweb-pdf" model="purchase.order" file="purchase.marel_report_po" name="marel_in_data_report_purchase_o.marel_report_po_aksesoris_draff_report" />
+        <record id="action_report_po_aksesoris_draff" model="ir.actions.report">
+            <field name="name">Report Draft PO</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_aksesoris_draff_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_aksesoris_draff_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="marel_report_po_spare_parts_import_draff" string="Print Draff PO import" report_type="qweb-pdf" model="purchase.order" file="purchase.marel_report_po" name="marel_in_data_report_purchase_o.marel_report_po_spare_parts_import_report_draff" />
+        <record id="action_marel_report_po_spare_parts_import_draff" model="ir.actions.report">
+            <field name="name">Report Draft PO Import</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_import_draff_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_import_draff_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <report id="marel_report_po_spare_parts_lokal_draff" string="Print Draff PO lokal" report_type="qweb-pdf" model="purchase.order" file="purchase.marel_report_po" name="marel_in_data_report_purchase_o.marel_report_po_spare_parts_lokal_report_draff" />
+        <record id="action_marel_report_po_spare_parts_lokal_draff" model="ir.actions.report">
+            <field name="name">Report Draft PO Lokal</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_lokal_draff_doc</field>
+            <field name="report_file">marel_in_data_report_purchase_o.report_marel_report_po_pemesanan_spare_parts_lokal_draff_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

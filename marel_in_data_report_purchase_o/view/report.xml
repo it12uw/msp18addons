@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- coba header -->
+        <template id="external_layout_header_custom">
+            <div class="header o_custom_header">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
+                    </div>
+                    <div class="col-xs-5 col-xs-offset-1">
+                        <ul class="list-unstyled">
+                            <!-- <span t-field="o.nama_devisi.kode_dokumen"/><span t-field="o.nama_devisi.hal"/><span t-field="o.nama_devisi.no_revisi"/><span t-field="o.nama_devisi.tgl_revisi"/><span t-field="o.nama_devisi.tgl_efektif"/> -->
+                            <!-- JARAK YG DI BUAT -->
+                            <li t-if="o.nama_devisi.kode_dokumen">Doc ID:                             
+                            
+                                <span t-field="o.nama_devisi.kode_dokumen"/>
+                            </li>
+                            <li t-if="o.nama_devisi.hal">Page: 
+                            
+                                <span t-field="o.nama_devisi.hal"/>
+                            </li>
+                            <li t-if="o.nama_devisi.no_revisi">Revision No: 
+                            
+                                <span t-field="o.nama_devisi.no_revisi"/>
+                            </li>
+                            <li t-if="o.nama_devisi.tgl_revisi">Revision Date: 
+                            
+                                <span t-field="o.nama_devisi.tgl_revisi"/>
+                            </li>
+                            <li t-if="o.nama_devisi.tgl_efektif">Effective Date: 
+                            
+                                <span t-field="o.nama_devisi.tgl_efektif"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="article o_report_layout_custom">
+                <t t-raw="0" />
+            </div>
+        </template>
+        <!-- coba header -->
+        <!-- coba footer -->
+        <template id="external_layout_footer_custom">
+            <div class="footer o_custom_footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <ul class="list-inline mb4">
+                        <!-- <li t-if="o.company_id.phone">Phone: 
+                        <span t-field="o.company_id.phone"/></li> -->
+                        <span t-field="o.company_id.phone"/>
+                        <!-- <li t-if="o.company_id.email">Email: 
+                        <span t-field="o.company_id.email"/></li> -->
+                        <span t-field="o.company_id.email"/>
+                        <!-- <li t-if="o.company_id.website">Web: 
+                        <span t-field="o.company_id.website"/></li> -->
+                        <span t-field="o.company_id.website"/>
+                        <!-- <li t-if="o.company_id.vat"><t t-esc="o.country_id.vat_label or 'TIN'"/>: 
+                        <span t-field="o.company_id.vat"/></li> -->
+                        <span t-field="o.company_id.vat"/>
+                    </ul>
+                    <div name="financial_infos">
+                        <span t-field="o.company_id.report_footer"/>
+                    </div>
+                    <div class="text-muted">
+                    Page: 
+                        <span class="page"/> / 
+                        <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <!-- ========================================================================= -->
+        <template id="custom_report_external_layout">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"/></t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"/></t>
+            <div class="article">
+                <t t-call="custom_report_po.external_layout_header_custom"/>
+                <t t-raw="0"/>
+                <t t-call="custom_report_po.external_layout_footer_custom"/>
+            </div>
+        </template>
+        <!-- ============================================================================== -->
+    </data>
+</odoo>

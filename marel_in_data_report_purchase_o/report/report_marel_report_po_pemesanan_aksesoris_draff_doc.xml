@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_marel_report_po_pemesanan_aksesoris_draff_doc">
+		<t t-call="web.external_layout">
+			<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+			<div class="page oe_purchase_font_title">
+				<div class="oe_structure" />
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>
+								Document ID
+							</th>
+							<th>
+								Page
+							</th>
+							<th>
+								Revision No
+							</th>
+							<th>
+								Revision Date
+							</th>
+							<th>
+								Effective Date
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>MSP/F/P/PCH/02.01</td>
+							<td>Page 1 of 1</td>
+							<td>-</td>
+							<td>-</td>
+							<td>02 JANUARI 2019</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row">
+					<h3 align="center">
+						<strong>
+							DRAFT PURCHASE ORDER
+						</strong>
+					</h3>
+					<div class="col-xs-6">
+						<strong>
+							Shipping address:
+						</strong>
+						<div t-if="o.dest_address_id">
+							<div t-field="o.dest_address_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone","mobile"], "no_marker": True, "phone_icons": True}' />
+						</div>
+						<div t-if="not o.dest_address_id and o.picking_type_id and o.picking_type_id.warehouse_id">
+							<span t-field="o.picking_type_id.warehouse_id.name" />
+							<div t-field="o.picking_type_id.warehouse_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "phone","mobile"], "no_marker": True, "phone_icons": True}' />
+						</div>
+					</div>
+					<div class="col-xs-5 col-xs-offset-1">
+						<div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone","mobile"], "no_marker": True, "phone_icons": True}' />
+						<t t-esc="'Attn:'" />
+						<span t-field="o.partner_id.attn" />
+						<br />
+						<t t-esc="'Email:'" />
+						<span t-field="o.partner_id.email" />
+					</div>
+				</div>
+				<div class="row mt32 mb32">
+					<div t-if="o.name" class="col-xs-3">
+						<strong>
+							Our Order Reference:
+						</strong>
+						<p t-field="o.name" style="font-size:22px;"/>
+					</div>
+					<div t-if="o.partner_ref" class="col-xs-3">
+						<strong>
+							Your Order Reference:
+						</strong>
+						<p t-field="o.partner_ref" />
+					</div>
+					<div t-if="o.date_order" class="col-xs-3">
+						<strong>
+							Order Date:
+						</strong>
+						<p t-field="o.date_order" />
+					</div>
+					<!-- gsgdf -->
+					<div t-if="o.scheduled_date" class="col-xs-3">
+						<strong>
+							Scheduled Date:
+						</strong>
+						<p t-field="o.scheduled_date" />
+					</div>
+					<div name="branch" t-if="o.branch_id" class="col-xs-3" groups="base_branch_company.group_multi_branch">
+						<strong>
+							Branch:
+						</strong>
+						<p t-field="o.branch_id" />
+					</div>
+					<div t-if="o.kurs" class="col-xs-3">
+						<strong>
+							Kurs:
+						</strong>
+						<p t-field="o.kurs" />
+					</div>
+					<div t-if="o.jenis_kurs" class="col-xs-3">
+						<strong>
+							Jenis Kurs:
+						</strong>
+						<p t-field="o.jenis_kurs" />
+					</div>
+					<div t-if="o.taxes_id" class="col-xs-3">
+						<strong>
+							Taxes:
+						</strong>
+						<p t-field="o.taxes_id"/>
+					</div>
+				</div>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>
+								<strong>
+									No
+								</strong>
+							</th>
+							<th>
+								<strong>
+									Description
+								</strong>
+							</th>
+							<!-- <th>
+								<strong>
+									Taxes
+								</strong>
+							</th> -->
+							<th class="text-right">
+								<strong>
+									Status
+								</strong>
+							</th>
+							<th class="text-right">
+								<strong>
+									Qty
+								</strong>
+							</th>
+							<th class="text-right">
+								<strong>
+									Unit Price
+								</strong>
+							</th>
+							<th class="text-right">
+								<strong>
+									Amount
+								</strong>
+							</th>
+							<th class="text-right">
+								<strong>
+									Keterangan
+								</strong>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr t-foreach="o.order_line" t-as="line">
+							<td>
+								<span t-esc="line_index+1"/>
+							</td>
+							<td>
+								<span t-field="line.product_id"/>
+							</td>
+							<!-- <td>
+								<span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))" />
+							</td> -->
+							<td class="text-right">
+								<span t-field="line.status" />
+							</td>
+							<td class="text-right">
+								<span t-esc="'{0:.2f}'.format(line.product_qty)" />
+								<span t-field="line.product_uom.name" groups="product.group_uom" />
+							</td>
+							<td class="text-right">
+								<span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+							</td>
+							<td class="text-right">
+								<span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+							</td>
+							<td class="text-right">
+								<span t-field="line.keterangan" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="row">
+					<div class="col-xs-4 pull-right">
+						<table class="table table-condensed">
+							<tr class="border-black">
+								<td>
+									<strong>
+										Subtotal
+									</strong>
+								</td>
+								<td class="text-right">
+									<span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Taxes
+								</td>
+								<td class="text-right">
+									<span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+								</td>
+							</tr>
+							<tr class="border-black">
+								<td>
+									<strong>
+										Total
+									</strong>
+								</td>
+								<td class="text-right">
+									<span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<p t-field="o.partner_id.comment"/>
+				<p t-field="o.notes" />
+				<div class="oe_structure" />
+			</div>
+			<table>
+				<tr>
+					<td width="40%">
+						Hormat Kami,
+					</td>
+					<td width="20%">
+					</td>
+					<td width="40%">
+						Disetujui,
+					</td>
+				</tr>
+				<!-- <tr style="height:100px"> -->
+				<tr>
+					<td width="40%">
+						PT. Marel Sukses Pratama
+					</td>
+					<td width="20%">
+					</td>
+					<td width="40%">
+					</td>
+				</tr>
+				<tr>
+					<td width="40%" class="text-left">
+						<img t-attf-src="data:image/png;base64,{{ o.supervise_uid.digital_signature }}" style="width:200px; height:100px;"/>
+					</td>
+					<td width="20%">
+					</td>
+					<td t-if="o.state not in ['purchase']" width="40%">
+						<img t-attf-src="data:image/png;base64,{{ o.approval_uid.digital_signature }}" style="position:absolute; width:200px; height:100px;"/>
+					</td>
+				</tr>
+
+				<tr>
+					<!-- <tr style="height:30px"> -->
+					<td width="40%" class="text-center">
+						<!-- <td class="text-center" width="40%"> -->
+						<!-- <p t-field="o.supervise_uid"/> -->
+						<span>Wati/Budi</span>
+
+					</td>
+					<td width="20%">
+					</td>
+					<td width="40%">
+						Martin Lukas / Erli Faniwati
+					</td>
+				</tr>
+				<tr>
+					<td width="40%">Harap ditandatangani setelah P.O. diterima dan</td>
+					<td width="20%">fax kembali ke </td>
+					<td width="40%">PT. Marel S.P. ke no. 0274-867313</td>
+				</tr>
+				<!-- <tr style="height:100px">
+					<td>
+						Received by,
+					</td>
+					<td />
+					<td />
+				</tr>
+				<tr style="height:50px">
+					<td>
+						(..........................)
+					</td>
+					<td />
+					<td />
+				</tr> -->
+			</table>
+			<!--
+			<table>
+			<tr>
+			<td>Keterangan :</td>
+			</tr>
+			<tr>
+			<td>Barang dikirim via : POS Reguler (Ongkos kirim ditanggung PT. Marel)</td>
+			</tr>
+			<tr>
+			<td>Jatuh Tempo Pembayaran = 30 hari dari tagihan diterima.</td>
+			</tr>
+			<tr>
+			<td>Barang harap dikirim ke : Jl. Baru Mulungan Gondang Penen Sendangadi Mlati Sleman </td>
+			</tr>
+			<tr>
+			<td>Yogyakarta 55285 Telp. (0274) 867208, Fax. (0274) 867313</td>
+			</tr>
+			<tr>
+			<td>Harap cantumkan No. PO (dari PT. Marel SP.) pada setiap Surat Jalan dan Tagihan (Invoice)  </td>
+			</tr>
+			<tr>
+			<td>Pada saat penagihan harap sertakan : Invoice, Faktur Pajak, Surat Jalan (TTD Marel), </td>
+			</tr>
+			<tr>
+			<td>Copy PO dengan TTD / Cap Basah. masing - masing 2 (dua) rangkap (1 asli + 1 copy) </td>
+			</tr>
+			<tr>
+			<td>Demikian permohonan kami, atas bantuannya kami ucapkan terima kasih. </td>
+			</tr>
+			</table>
+			-->
+		</t>
+	</template>
+</odoo>

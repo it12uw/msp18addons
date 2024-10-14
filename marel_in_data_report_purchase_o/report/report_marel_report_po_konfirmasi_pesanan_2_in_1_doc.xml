@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_marel_report_po_konfirmasi_pesanan_2_in_1_doc">
+        <!-- <t t-call="web.external_layout"> -->
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-3 mb4">
+                            <img t-att-src="'/marel_in_data_report_purchase_o/static/description/logomarel.png'" style="max-height: 50px;" alt="Logo"/>
+                        </div>
+                    </div>
+                    <div class="pull-left company_address">
+                        <div>
+                            <strong t-field="doc.company_id.partner_id.name"/>
+                        </div>
+                        <span t-field="doc.company_id.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                    </div>
+                </div>
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+                <div class="page oe_purchase_font_title">
+                    <table class="table table-condensed" style ="font-size: 11px; line-height: 0.6">
+                        <thead>
+                            <tr>
+                                <th>
+								Document ID
+                                </th>
+                                <th>
+								Page
+                                </th>
+                                <th>
+								Document No
+                                </th>
+                                <th>
+								Effective Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MSP/F/P/MK/01.02</td>
+                                <td>1 Dari 1</td>
+                                <td></td>
+                                <!-- <td>25 Juli 2020</td> -->
+                                <td>29 Mei 2023</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table align="right" style ="font-size: 11px; line-height: 0.6">
+                        <tr>
+                            <td width="400px">
+                                <div class="mt8">
+                                    <strong>Shipping address:</strong>
+                                    <div t-field="doc.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <h6>
+                        <span>
+										FORM INFORMASI ORDER
+                        </span>
+                    </h6>
+                    <h6>
+                        <span t-field="doc.name"/>
+                    </h6>
+                    <div class="row mt32 mb32" id="informations">
+                        <div t-if="doc.client_order_ref" class="col-xs-3">
+                            <strong>Your Reference:</strong>
+                            <p t-field="doc.client_order_ref"/>
+                        </div>
+                        <div t-if="doc.date_order" class="col-xs-3">
+                            <strong>Date Ordered:</strong>
+                            <p t-field="doc.date_order"/>
+                        </div>
+                        <div t-if="doc.date_order" class="col-xs-3">
+                            <strong>Quotation Date:</strong>
+                            <p t-field="doc.date_order"/>
+                        </div>
+                        <div t-if="doc.user_id.name" class="col-xs-3">
+                            <strong>Salesperson:</strong>
+                            <p t-field="doc.user_id"/>
+                        </div>
+                        <div t-if="doc.sale_marketplace" class="col-xs-3">
+                            <strong>Marketplace:</strong>
+                            <p t-field="doc.sale_marketplace"/>
+                        </div>
+                        <div t-if="doc.validity_date" class="col-xs-3">
+                            <strong>Expiration Date:</strong>
+                            <p t-field="doc.validity_date" />
+                        </div>
+                        <div t-if="doc.requested_date" class="col-xs-3">
+                            <strong>Delivery Date:</strong>
+                            <p t-field="doc.requested_date" />
+                        </div>
+                    </div>
+                    <!-- <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/> -->
+                    <t t-foreach="doc.order_lines_layouted()" t-as="page" style ="font-size: 11px; line-height: 0.6">
+                        <table class="table table-condensed" style ="font-size: 11px; line-height: 0.6">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th class="text-right">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="page" t-as="layout_category">
+                                    <t t-if="layout_category_size > 1 or page_size > 1" groups="sale.group_sale_layout">
+                                        <tr class="active">
+                                            <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">&amp;bull;
+                                                <t t-esc="layout_category['name']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <!-- Lines associated -->
+                                    <t t-foreach="layout_category['lines']" t-as="l">
+                                        <tr>
+                                            <td>
+                                                <span t-field="l.name"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'{0:.2f}'.format(l.product_uom_qty)"/>
+                                                <span t-field="l.product_uom" groups="product.group_uom"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                            <tr class="border-black">
+                                <td></td>
+                                <td>
+                                    <strong>
+									Total Qty :
+                                    </strong>
+                                    <t t-set="total" t-value="sum([l.product_uom_qty for l in doc.order_line.filtered(lambda t:t.product_id.product_tmpl_id.type != 'service')])"/>
+                                    <span t-esc="total" />
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-if="page_index &lt; page_size - 1" groups="sale.group_sale_layout">
+                            <p style="page-break-before:always;"></p>
+                        </t>
+                    </t>
+                    <p t-field="doc.note" />
+                    <p t-if="doc.payment_term_id.note">
+                        <span t-field="doc.payment_term_id.note"/>
+                    </p>
+                    <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.note">
+                        <strong>Fiscal Position Remark:</strong>
+                        <span t-field="doc.fiscal_position_id.note"/>
+                    </p>
+                    <div class="oe_structure"/>
+                    <table align="center" style ="font-size: 11px; line-height: 0.6">
+                        <tr style="height:80px">
+                            <td width="280px">Diperiksa Oleh : </td>
+                            <td width="280px"></td>
+                            <td width="280px"></td>
+                            <td width="280px"></td>
+                            <td width="280px" class="text-right">Approved by:</td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td width="20%">
+                                <span>Marketing</span>
+                            </td>
+                            <td width="20%">
+                            </td>
+                            <td width="20%">
+                            </td>
+                            <td width="20%">
+                            </td>
+                            <td width="20%" class="text-right">
+                                <span>Produksi</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-3 mb4">
+                            <img t-att-src="'/marel_in_data_report_purchase_o/static/description/logomarel.png'" style="max-height: 60px;" alt="Logo"/>
+                        </div>
+                    </div>
+                    <div class="pull-left company_address">
+                        <div>
+                            <strong t-field="doc.company_id.partner_id.name"/>
+                        </div>
+                        <span t-field="doc.company_id.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                    </div>
+                </div>
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+                <div class="page oe_purchase_font_title">
+                    <table class="table table-condensed" style ="font-size: 11px; line-height: 0.6">
+                        <thead>
+                            <tr>
+                                <th>
+								Document ID
+                                </th>
+                                <th>
+								Page
+                                </th>
+                                <th>
+								Document No
+                                </th>
+                                <th>
+								Effective Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MSP/F/P/MK/01.02</td>
+                                <td>1 Dari 1</td>
+                                <td></td>
+                                <!-- <td>25 Juli 2020</td> -->
+                                <td>29 Mei 2023</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table align="right" style ="font-size: 11px; line-height: 0.6">
+                        <tr>
+                            <td width="400px">
+                                <div class="mt8">
+                                    <strong>Shipping address:</strong>
+                                    <div t-field="doc.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <h6>
+                        <span>
+										FORM INFORMASI ORDER
+                        </span>
+                    </h6>
+                    <h6>
+                        <span t-field="doc.name"/>
+                    </h6>
+                    <div class="row mt32 mb32" id="informations">
+                        <div t-if="doc.client_order_ref" class="col-xs-3">
+                            <strong>Your Reference:</strong>
+                            <p t-field="doc.client_order_ref"/>
+                        </div>
+                        <div t-if="doc.date_order" class="col-xs-3">
+                            <strong>Date Ordered:</strong>
+                            <p t-field="doc.date_order"/>
+                        </div>
+                        <div t-if="doc.date_order" class="col-xs-3">
+                            <strong>Quotation Date:</strong>
+                            <p t-field="doc.date_order"/>
+                        </div>
+                        <div t-if="doc.user_id.name" class="col-xs-3">
+                            <strong>Salesperson:</strong>
+                            <p t-field="doc.user_id"/>
+                        </div>
+                        <div t-if="doc.sale_marketplace" class="col-xs-3">
+                            <strong>Marketplace:</strong>
+                            <p t-field="doc.sale_marketplace"/>
+                        </div>
+                        <div t-if="doc.validity_date" class="col-xs-3">
+                            <strong>Expiration Date:</strong>
+                            <p t-field="doc.validity_date" />
+                        </div>
+                        <div t-if="doc.requested_date" class="col-xs-3">
+                            <strong>Delivery Date:</strong>
+                            <p t-field="doc.requested_date" />
+                        </div>
+                    </div>
+                    <!-- <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/> -->
+                    <t t-foreach="doc.order_lines_layouted()" t-as="page" style ="font-size: 11px; line-height: 0.6">
+                        <table class="table table-condensed" style ="font-size: 11px; line-height: 0.6">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th class="text-right">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="page" t-as="layout_category">
+                                    <t t-if="layout_category_size > 1 or page_size > 1" groups="sale.group_sale_layout">
+                                        <tr class="active">
+                                            <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">&amp;bull;
+                                                <t t-esc="layout_category['name']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <!-- Lines associated -->
+                                    <t t-foreach="layout_category['lines']" t-as="l">
+                                        <tr>
+                                            <td>
+                                                <span t-field="l.name"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="'{0:.2f}'.format(l.product_uom_qty)"/>
+                                                <span t-field="l.product_uom" groups="product.group_uom"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                            <tr class="border-black">
+                                <td></td>
+                                <td>
+                                    <strong>
+									Total Qty :
+                                    </strong>
+                                    <t t-set="total" t-value="sum([l.product_uom_qty for l in doc.order_line.filtered(lambda t:t.product_id.product_tmpl_id.type != 'service')])"/>
+                                    <span t-esc="total" />
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-if="page_index &lt; page_size - 1" groups="sale.group_sale_layout">
+                            <p style="page-break-before:always;"></p>
+                        </t>
+                    </t>
+                    <p t-field="doc.note" />
+                    <p t-if="doc.payment_term_id.note">
+                        <span t-field="doc.payment_term_id.note"/>
+                    </p>
+                    <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.note">
+                        <strong>Fiscal Position Remark:</strong>
+                        <span t-field="doc.fiscal_position_id.note"/>
+                    </p>
+                    <div class="oe_structure"/>
+                    <table align="center" style ="font-size: 11px; line-height: 0.6">
+                        <tr style="height:80px">
+                            <td width="280px">Diperiksa Oleh : </td>
+                            <td width="280px"></td>
+                            <td width="280px"></td>
+                            <td width="280px"></td>
+                            <td width="280px" class="text-right">Approved by:</td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td width="20%">
+                                <span>Marketing</span>
+                            </td>
+                            <td width="20%">
+                            </td>
+                            <td width="20%">
+                            </td>
+                            <td width="20%">
+                            </td>
+                            <td width="20%" class="text-right">
+                                <span>Produksi</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="report_saleorder">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+    <template id="report_saleorder_pro_forma">
+        <t t-call="web.html_container">
+            <t t-set="is_pro_forma" t-value="True"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
