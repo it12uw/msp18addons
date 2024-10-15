@@ -37,10 +37,11 @@
                         <notebook>
                             <page string="Keterangan">
                                 <field name="msp_tanda_terima_tagihan_line_ids">
-                                    <tree string="Keterangan" editable="bottom">
+
+                                    <list string="Keterangan" editable="bottom">
                                         <field name="keterangan"/>
                                         <field name="nominal" />
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
