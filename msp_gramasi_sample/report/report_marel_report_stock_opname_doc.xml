@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flectra>
+
+    <data noupdate="0">
+        <!-- pada name .in_mrp_product_produce_report memanggil template semua record -->
+        <!-- template perRecord -->
+        <template id="report_marel_report_stock_opname_doc">
+            <!--<t t-foreach="docs" t-as="o"> jika membuat sendiri harus didefinisikan bukan o dan tidak 
+                menggunakan t-forech karena tidak looping data namun jika mau luping data maka bisa menggunakan loopin data
+            -->
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <td>Nama Barang</td>
+                                <td>Code</td>
+                                <td>Deskripsi</td>
+                                <td>Kategori</td>
+                                <td>Jumlah yg ada / Quantity</td>
+                            </tr>
+                        </thead>
+                        <t t-foreach="docs" t-as="o">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-field="o.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.barcode"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.description"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.categ_id.complete_name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.qty_available"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </t>
+
+                    </table>
+
+                </div>
+            </t>
+        </template>
+        <!-- template semua record-->
+    </data>
+</flectra>

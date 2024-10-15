@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- data sample gramasi -->
+        <record id="view_marel_in_permintaan_benang_sample_list" model="ir.ui.view">
+            <field name="name">marelin.permintaan.benang.sample.tree</field>
+            <field name="model">marelin.permintaan.benang.sample</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Data Permintaan Benang Sample">
+                    <field name="tgl"/>
+                    <field name="nama_desain_sample" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="needle"/>
+                </list>
+            </field>
+        </record>
+        <record id="view_marel_in_permintaan_benang_sample_form" model="ir.ui.view">
+            <field name="name">marelin.permintaan.benang.sample.form</field>
+            <field name="model">marelin.permintaan.benang.sample</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Data Gramasi">
+                    <sheet>
+                        <group>
+                            <field name="tgl"/>
+                            <field name="nama_desain_sample" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="needle"/>
+                        </group>
+                        <notebook>
+                            <page string="Data Permintaan Benang">
+                                <field name="permintaan_benang_sample_list_line">
+                                    <list string="Data benang" editable="bottom">
+                                        <field name="product_template_id" options="{'no_open': True, 'no_create': True}"/>
+                                        <field name="jmlh_ambil_kg"/>
+                                        <field name="jmlh_ambil_connes"/>
+                                        <field name="jmlh_sisa_kg"/>
+                                        <field name="jmlh_sisa_connes"/>
+                                        <field name="keterangan"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

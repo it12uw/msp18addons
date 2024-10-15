@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <report
+            id="menu_msp_surat_jalan_report_doc"
+            string="Surat Jalan / BPB/ SPB"
+            report_type="qweb-pdf"
+            model="stock.picking"
+            file="msp_report_inventory.menu"
+            name="msp_report_inventory.report_msp_surat_jalan_report_doc"
+        />
+        <template id="report_msp_surat_jalan_report_doc">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="msp_report_inventory.msp_surat_jalan_report_doc" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

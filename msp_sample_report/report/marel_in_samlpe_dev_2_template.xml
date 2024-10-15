@@ -1,0 +1,1652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data noupdate="0">
+        <!-- pada name .in_mrp_product_produce_report memanggil template semua record -->
+        <!-- template perRecord -->
+        <template id="marel_in_samlpe_dev_2_doc">
+            <t t-call="web.external_layout">
+                <table class="table table-striped table-bordered" style="font-size:12px;">
+                    <thead style="background-color:#3498DB; !important;color:#FFF !important; display:table-row-group;">
+                        <tr>
+                            <th>
+								Kode Dokumen
+                            </th>
+                            <th>
+								Halaman
+                            </th>
+                            <th>
+								No Revisi
+                            </th>
+                            <th>
+								Tanggal Revisi
+                            </th>
+                            <th>
+								Tanggal Efektif
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MSP/F/P/DEV/01.01</td>
+                            <td>HAL 1 dari 1</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>01 JULI 2024</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="page" style="font-size:12px;">
+                    <span>
+                        <strong>Kode Doc :</strong>
+                    </span>
+                    <span t-field="o.kode_dokumen"/>
+                    <span>
+                        <strong>Nama Prodak :</strong>
+                    </span>
+                    <span t-field="o.product_id"/>
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>Brand</th>
+                                <th>Delivery</th>
+                                <th>Model</th>
+                                <th>Artikel</th>
+                                <th>Type</th>
+                                <th>Tgl Masuk</th>
+                                <th>Tgl Selesai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-field="o.brand"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.delivery"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.model_sample"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.artikel"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.tipe"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.tgl_masuk"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.tgl_selesai"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>No Mesin/Jarum</th>
+                                <th>Warna</th>
+                                <th>Size</th>
+                                <th>Waktu</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span t-field="o.no_mesin"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.warna"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.size"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.waktu"/>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Nama Desain</th>
+                                <th>Berat/Pasang</th>
+                                <th>Waktu Produksi</th>
+                                <th>Tgl Buat Operator</th>
+                                <th>Operator</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                <td>
+                                    <span t-field="l.nama_desain"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.berat"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.waktu_produksi"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.tgl_buat_operator"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.nama_operator_id"/>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <div class="col-xs-6 pull-left">
+                            <table class="table table-condensed table-striped">
+                                <tr>
+                                    <th>Bagian</th>
+                                    <th>CRC</th>
+                                    <th>S</th>
+                                    <th>E</th>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Welt Inside</td>
+                                    <td>
+                                        <span t-field="l.welt_inside_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.welt_inside_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.welt_inside_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Welt Outside</td>
+                                    <td>
+                                        <span t-field="l.welt_outside_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.welt_outside_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.welt_outside_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Transfer</td>
+                                    <td>
+                                        <span t-field="l.transfer_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.transfer_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.transfer_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Leg Gum</td>
+                                    <td>
+                                        <span t-field="l.leg_gum_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.leg_gum_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.leg_gum_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Leg</td>
+                                    <td>
+                                        <span t-field="l.leg_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.leg_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.leg_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Leg Band Elast</td>
+                                    <td>
+                                        <span t-field="l.leg_band_elast_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.leg_band_elast_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.leg_band_elast_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Ankle</td>
+                                    <td>
+                                        <span t-field="l.ankle_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.ankle_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.ankle_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Heel</td>
+                                    <td>
+                                        <span t-field="l.heel_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.heel_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.heel_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Foot Gum</td>
+                                    <td>
+                                        <span t-field="l.foot_gum_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.foot_gum_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.foot_gum_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Foot</td>
+                                    <td>
+                                        <span t-field="l.foot_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.foot_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.foot_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Begin Toe</td>
+                                    <td>
+                                        <span t-field="l.begin_toe_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.begin_toe_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.begin_toe_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Toe</td>
+                                    <td>
+                                        <span t-field="l.toe_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.toe_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.toe_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Rosso</td>
+                                    <td>
+                                        <span t-field="l.rosso_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.rosso_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.rosso_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Lose</td>
+                                    <td>
+                                        <span t-field="l.lose_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.lose_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.lose_e"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>Lingking</td>
+                                    <td>
+                                        <span t-field="l.lingking_crc"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.lingking_s"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.lingking_e"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-xs-6 pull-right">
+                            <table class="table table-condensed table-striped">
+                                <tr>
+                                    <th>YF</th>
+                                    <th>Feed 1</th>
+                                    <th>YF</th>
+                                    <th>Feed 1</th>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>1</td>
+                                    <td>
+                                        <span t-field="l.feed_1"/>
+                                    </td>
+                                    <td>1C</td>
+                                    <td>
+                                        <span t-field="l.feed_1c"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>2</td>
+                                    <td>
+                                        <span t-field="l.feed_2"/>
+                                    </td>
+                                    <td>2A</td>
+                                    <td>
+                                        <span t-field="l.feed_2a"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>3.A</td>
+                                    <td>
+                                        <span t-field="l.feed_3_a"/>
+                                    </td>
+                                    <td>2B</td>
+                                    <td>
+                                        <span t-field="l.feed_2b"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>3.B</td>
+                                    <td>
+                                        <span t-field="l.feed_3_b"/>
+                                    </td>
+                                    <td>2C</td>
+                                    <td>
+                                        <span t-field="l.feed_2c"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>4.A</td>
+                                    <td>
+                                        <span t-field="l.feed_4_a"/>
+                                    </td>
+                                    <td>3A</td>
+                                    <td>
+                                        <span t-field="l.feed_3a"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>4.B</td>
+                                    <td>
+                                        <span t-field="l.feed_4_b"/>
+                                    </td>
+                                    <td>3B</td>
+                                    <td>
+                                        <span t-field="l.feed_3b"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>5</td>
+                                    <td>
+                                        <span t-field="l.feed_5"/>
+                                    </td>
+                                    <td>3C</td>
+                                    <td>
+                                        <span t-field="l.feed_3c"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>6</td>
+                                    <td>
+                                        <span t-field="l.feed_6"/>
+                                    </td>
+                                    <td>4A</td>
+                                    <td>
+                                        <span t-field="l.feed_4a"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>7</td>
+                                    <td>
+                                        <span t-field="l.feed_7"/>
+                                    </td>
+                                    <td>4B</td>
+                                    <td>
+                                        <span t-field="l.feed_4b"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>8</td>
+                                    <td>
+                                        <span t-field="l.feed_8"/>
+                                    </td>
+                                    <td>5A</td>
+                                    <td>
+                                        <span t-field="l.feed_5a"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>1A</td>
+                                    <td>
+                                        <span t-field="l.feed_1a"/>
+                                    </td>
+                                    <td>5B</td>
+                                    <td>
+                                        <span t-field="l.feed_5b"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                    <td>1B</td>
+                                    <td>
+                                        <span t-field="l.feed_1b"/>
+                                    </td>
+                                    <td>5C</td>
+                                    <td>
+                                        <span t-field="l.feed_5c"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="table table-condensed table-striped">
+                        <tr t-if="o.style">
+                            <td>Style</td>
+                            <td>
+                                <span t-field="o.style"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.artikel">
+                            <td>Artikel</td>
+                            <td>
+                                <span t-field="o.artikel"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.body">
+                            <td>Body</td>
+                            <td>
+                                <span t-field="o.body"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.wording_munich">
+                            <td>Wrding</td>
+                            <td>
+                                <span t-field="o.wording_munich"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.hell">
+                            <td>Heel</td>
+                            <td>
+                                <span t-field="o.hell"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.toe">
+                            <td>Toe</td>
+                            <td>
+                                <span t-field="o.toe"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="o.logo">
+                            <td>Logo</td>
+                            <td>
+                                <span t-field="o.logo"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.transfer">
+                            <td>Transfer</td>
+                            <td>
+                                <span t-field="o.transfer"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.lintoe">
+                            <td>Lintoe</td>
+                            <td>
+                                <span t-field="o.lintoe"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.penjerat">
+                            <td>Penjerat</td>
+                            <td>
+                                <span t-field="o.penjerat"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.penjerat_2">
+                            <td>Penjerat 2</td>
+                            <td>
+                                <span t-field="o.penjerat_2"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.karet">
+                            <td>Karet</td>
+                            <td>
+                                <span t-field="o.karet"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_1">
+                            <td>Patter 1</td>
+                            <td>
+                                <span t-field="o.patter_1"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_2">
+                            <td>Patter 2</td>
+                            <td>
+                                <span t-field="o.patter_2"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_3">
+                            <td>Patter 3</td>
+                            <td>
+                                <span t-field="o.patter_3"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_4">
+                            <td>Patter 4</td>
+                            <td>
+                                <span t-field="o.patter_4"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_5">
+                            <td>Patter 5</td>
+                            <td>
+                                <span t-field="o.patter_5"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_6">
+                            <td>Patter 6</td>
+                            <td>
+                                <span t-field="o.patter_6"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_7">
+                            <td>Patter 7</td>
+                            <td>
+                                <span t-field="o.patter_7"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_8">
+                            <td>Patter 8</td>
+                            <td>
+                                <span t-field="o.patter_8"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_9">
+                            <td>Patter 9</td>
+                            <td>
+                                <span t-field="o.patter_9"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.patter_10">
+                            <td>Patter 10</td>
+                            <td>
+                                <span t-field="o.patter_10"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.jumlah_pasang">
+                            <td>Jumlah Pasang</td>
+                            <td>
+                                <span t-field="o.jumlah_pasang"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-condensed table-striped">
+                        <tr>
+                            <th>Nama Benang</th>
+                            <th class="text-right"> Berat Awal</th>
+                            <th class="text-right"> Berat Akhir</th>
+                            <th class="text-right"> Berat Terpakai</th>
+                            <th class="text-right"> Cones</th>
+                        </tr>
+                        <tr t-foreach="o.bom_line_list" t-as="l">
+                            <td class="text-left">
+                                <span t-field="l.product_id"/>
+                            </td>
+                            <td class="text-right">
+                            </td>
+                            <td class="text-right">
+                            </td>
+                            <td class="text-right">
+                            </td>
+                            <td class="text-right">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Total Bruto : </th>
+                            <th>
+                                <span t-field="o.total_bruto"/>
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </table>
+                    <div>
+                        <div class="col-xs-6 pull-left">
+                            <span t-field="o.gambar_sample" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;,'style':'width:450px ;height: 350px'}"/>
+                            <table>
+                                <tr t-if="o.keterangan">
+                                    <strong>Keterangan</strong>
+                                </tr>
+                                <tr t-if="o.keterangan">
+                                    <td>
+                                        <span t-field="o.keterangan"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <table>
+                                <tr style="height:100px">
+                                    <td width="120px">Disetujui Oleh:</td>
+                                    <td width="120px"></td>
+                                    <td width="120px"></td>
+                                </tr>
+                                <tr>
+                                    <td width="120px">Operator</td>
+                                    <td width="120px">QC</td>
+                                    <td width="120px">Marketting</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-xs-6 pull-right">
+                            <input type="checkbox" id="routing1" name="routing1" value="Kniting"/>
+                            <label for="routing1"> Kniting</label>
+                            <input type="checkbox" id="routing2" name="routing2" value="Conti"/>
+                            <label for="routing1"> Conti</label>
+                            <input type="checkbox" id="routing3" name="routing3" value="Inspekting"/>
+                            <label for="routing1"> Inspekting</label>
+                            <input type="checkbox" id="routing4" name="routing4" value="Printing"/>
+                            <label for="routing1"> Printing</label>
+                            <input type="checkbox" id="routing5" name="routing5" value="Sewing"/>
+                            <label for="routing1"> Sewing</label>
+                            <br/>
+                            <br/>
+                            <input type="checkbox" id="routing6" name="routing6" value="Anti_Slip"/>
+                            <label for="routing1"> Anti Slip</label>
+                            <input type="checkbox" id="routing7" name="routing7" value="Embroidery"/>
+                            <label for="routing1"> Embroidery</label>
+                            <input type="checkbox" id="routing8" name="routing8" value="Setting"/>
+                            <label for="routing1"> Setting</label>
+                            <input type="checkbox" id="routing9" name="routing9" value="Packing"/>
+                            <label for="routing1"> Packing</label>
+                            <img t-att-src="'/marel_in_samlpe_dev_2/static/description/kk.jpeg'" Style="width:250px;height:250px"/>
+                            <table class="table table-condensed table-striped" border='1'>
+                                <thead border='1'>
+                                    <tr>
+                                        <th rowspan='2' class="text-center">Konstruksi</th>
+                                        <th colspan="2" class="text-center">Stretcth (cm)</th>
+                                        <th colspan="3" class="text-center">Relaxed (cm)</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">X</th>
+                                        <th class="text-center">Y</th>
+                                        <th class="text-center">X</th>
+                                        <th class="text-center">Y</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-if="o.gum_relaxed_x">
+                                        <td>Gum</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.gum_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.gum_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.leg_gum_relaxed_x">
+                                        <td>Leg Gum</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.leg_gum_atas_relaxed_x">
+                                        <td>Leg Gum Atas</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_atas_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_atas_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_atas_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_atas_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.leg_gum_bawah_relaxed_x">
+                                        <td>Leg Gum Bawah</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_bawah_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_bawah_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_bawah_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_bawah_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.leg_relaxed_x">
+                                        <td>Leg</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.foot_relaxed_x">
+                                        <td>Foot</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.foot_gum_relaxed_x">
+                                        <td>Foot Gum</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_gum_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_gum_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_gum_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_gum_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.hell_relaxed_x">
+                                        <td>Heel</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.hell_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.hell_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.hell_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.hell_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <strong>Acc :</strong>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <span>Marketting</span>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="page" style="font-size:12px;">
+                    <span>
+                        <strong>Kode Doc : <span t-field="o.kode_dokumen"/></strong>
+                    </span>
+                    <span>
+                        <strong>Nama Produk : <span t-field="o.product_id"/></strong>
+                    </span>
+                    <table class="table table-striped table-bordered">
+                        <thead style="background-color:#3498DB; !important;color:#FFF !important; display:table-row-group;">
+                            <tr>
+                                <th>Brand</th>
+                                <th>Delivery</th>
+                                <th>Model</th>
+                                <th>Artikel</th>
+                                <th>Type</th>
+                                <th>Tanggal Masuk</th>
+                                <th>Tanggal Selesai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-field="o.brand"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.delivery"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.model_sample"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.artikel"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.tipe"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.tgl_masuk"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.tgl_selesai"/>
+                                </td>
+                            </tr>
+                        </tbody> 
+                    </table>
+                    <table class="table table-striped table-bordered">
+                        <thead style="display:table-row-group;">
+                            <tr>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">No Mesin/Jarum</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Warna</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Size</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Waktu</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;"></th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;"></th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-field="o.no_mesin"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.warna"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.size"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.waktu"/>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped table-bordered">
+                            <thead style="display:table-row-group;">
+                                <tr>
+                                    <th style="background-color:#3498DB; !important;color:#FFF !important;">Nama Desain</th>
+                                    <th style="background-color:#3498DB; !important;color:#FFF !important;">Berat/Pasang</th>
+                                    <th style="background-color:#3498DB; !important;color:#FFF !important;">Waktu Produksi</th>
+                                    <th style="background-color:#3498DB; !important;color:#FFF !important;">Tanggal Buat</th>
+                                    <th style="background-color:#3498DB; !important;color:#FFF !important;">Operator</th>
+                                    <th style="background-color:#3498DB; !important;color:#FFF !important;"></th>
+                                    <th style="background-color:#3498DB; !important;color:#FFF !important;"></th>
+                                </tr>
+                            </thead> 
+                            <tbody>       
+                            <tr t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                <td>
+                                    <span t-field="l.nama_desain"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.berat"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.waktu_produksi"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.tgl_buat_operator"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.nama_operator_id"/>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <div class="row mt32 mb32" id="GUM_1">
+                        <div class="col-xs-2">
+                            <strong>G Stretch X:</strong>
+                            <p t-field="o.gum_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>G Stretch Y:</strong>
+                            <p t-field="o.gum_stretch_y"/>
+                        </div>
+                        <div t-if="o.gum_relaxed_x" class="col-xs-2">
+                            <strong>G Relaxed X:</strong>
+                            <p t-field="o.gum_relaxed_x"/>
+                        </div>
+                        <div t-if="o.gum_relaxed_y" class="col-xs-2">
+                            <strong>G Relaxed Y:</strong>
+                            <p t-field="o.gum_relaxed_y"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LG Stretch X:</strong>
+                            <p t-field="o.leg_gum_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LG Stretch Y:</strong>
+                            <p t-field="o.leg_gum_stretch_y"/>
+                        </div>
+                        <div t-if="o.leg_gum_relaxed_x" class="col-xs-2">
+                            <strong>LG Relaxed X:</strong>
+                            <p t-field="o.leg_gum_relaxed_x"/>
+                        </div>
+                        <div t-if="o.leg_gum_relaxed_y" class="col-xs-2">
+                            <strong>LG Relaxed Y:</strong>
+                            <p t-field="o.leg_gum_relaxed_y"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LG Atas S X:</strong>
+                            <p t-field="o.leg_gum_atas_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LG Atas S Y:</strong>
+                            <p t-field="o.leg_gum_atas_stretch_y"/>
+                        </div>
+                        <div t-if="o.leg_gum_atas_relaxed_x" class="col-xs-2">
+                            <strong>LG Atas R X:</strong>
+                            <p t-field="o.leg_gum_atas_relaxed_x"/>
+                        </div>
+                        <div t-if="o.leg_gum_atas_relaxed_y" class="col-xs-2">
+                            <strong>LG Atas R Y:</strong>
+                            <p t-field="o.leg_gum_atas_relaxed_y"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LG Bawah S X:</strong>
+                            <p t-field="o.leg_gum_bawah_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LG Bawah S Y:</strong>
+                            <p t-field="o.leg_gum_bawah_stretch_y"/>
+                        </div>
+                        <div t-if="o.leg_gum_bawah_relaxed_x" class="col-xs-2">
+                            <strong>LG Bawah R X:</strong>
+                            <p t-field="o.leg_gum_bawah_relaxed_x"/>
+                        </div>
+                        <div t-if="o.leg_gum_bawah_relaxed_y" class="col-xs-2">
+                            <strong>LG Bawah R Y:</strong>
+                            <p t-field="o.leg_gum_bawah_relaxed_y"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LS X:</strong>
+                            <p t-field="o.leg_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>LS Y:</strong>
+                            <p t-field="o.leg_stretch_y"/>
+                        </div>
+                        <div t-if="o.leg_relaxed_x" class="col-xs-2">
+                            <strong>LR X:</strong>
+                            <p t-field="o.leg_relaxed_x"/>
+                        </div>
+                        <div t-if="o.leg_relaxed_y" class="col-xs-2">
+                            <strong>LR Y:</strong>
+                            <p t-field="o.leg_relaxed_y"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>FS X:</strong>
+                            <p t-field="o.foot_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>FS Y:</strong>
+                            <p t-field="o.foot_stretch_y"/>
+                        </div>
+                        <div t-if="o.foot_relaxed_x" class="col-xs-2">
+                            <strong>FR X:</strong>
+                            <p t-field="o.foot_relaxed_x"/>
+                        </div>
+                        <div t-if="o.foot_relaxed_y" class="col-xs-2">
+                            <strong>FR Y:</strong>
+                            <p t-field="o.foot_relaxed_y"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>FGS X:</strong>
+                            <p t-field="o.foot_gum_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>FGS Y:</strong>
+                            <p t-field="o.foot_gum_stretch_y"/>
+                        </div>
+                        <div t-if="o.foot_gum_relaxed_x" class="col-xs-2">
+                            <strong>FGR X:</strong>
+                            <p t-field="o.foot_gum_relaxed_x"/>
+                        </div>
+                        <div t-if="o.foot_gum_relaxed_y" class="col-xs-2">
+                            <strong>FGR Y:</strong>
+                            <p t-field="o.foot_gum_relaxed_y"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>HS X:</strong>
+                            <p t-field="o.hell_stretch_x"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>HS Y:</strong>
+                            <p t-field="o.hell_stretch_y"/>
+                        </div>
+                        <div t-if="o.hell_relaxed_x" class="col-xs-2">
+                            <strong>HR X:</strong>
+                            <p t-field="o.hell_relaxed_x"/>
+                        </div>
+                        <div t-if="o.hell_relaxed_y" class="col-xs-2">
+                            <strong>HR Y:</strong>
+                            <p t-field="o.hell_relaxed_y"/>
+                        </div>
+                    </div> -->
+                    <!-- 2 tabel -->
+                    <div>
+                        <div class="col-xs-6 pull-left">
+                            <table class="table table-sm table-condensed table-striped">
+                                <thead style="display:table-row-group;">
+                                    <tr>
+                                        <th style="background-color:#3498DB; !important;color:#FFF !important;">Bagian</th>
+                                        <th style="background-color:#3498DB; !important;color:#FFF !important;">CRC</th>
+                                        <th style="background-color:#3498DB; !important;color:#FFF !important;">S</th>
+                                        <th style="background-color:#3498DB; !important;color:#FFF !important;">E</th>
+                                        <th style="background-color:#3498DB; !important;color:#FFF !important;">Speed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Welt Inside</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Welt Outside</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transfer</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Leg Gum</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Leg</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Leg Band Elast</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ankle</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Heel</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Foot Gum</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Foot</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Begin Toe</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Toe</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Rosso</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lose</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lingking</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered">
+                        <thead style="display:table-row-group;">
+                            <tr>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Style</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Artikel</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Body</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Wrding</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Heel</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Toe</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">logo</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Transfer</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Lintoe</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Penjerat</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Penjerat 2</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Karet</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 1</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 2</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 3</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 4</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 5</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 6</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 7</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 8</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 9</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Pattern 10</th>
+                                <th style="background-color:#3498DB; !important;color:#FFF !important;">Jumlah Pasang</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-field="o.style"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.artikel"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.body"/>
+                                </td>
+                        
+                                <td>
+                                    <span t-field="o.wording_munich"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.hell"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.toe"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.logo"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.transfer"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.lintoe"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.penjerat"/>
+                                </td>
+                            
+                                <td>
+                                    <span t-field="o.penjerat_2"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.karet"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_1"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_2"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_3"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_4"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_5"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_6"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_7"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_8"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_9"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.patter_10"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.jumlah_pasang"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th class="text-center" style="background-color:#3498DB; !important;color:#FFF !important;">Nama Benang</th>
+                            <th class="text-center" style="background-color:#3498DB; !important;color:#FFF !important;">Berat Awal</th>
+                            <th class="text-center" style="background-color:#3498DB; !important;color:#FFF !important;">Berat Akhir</th>
+                            <th class="text-center" style="background-color:#3498DB; !important;color:#FFF !important;">Berat Terpakai</th>
+                            <th class="text-center" style="background-color:#3498DB; !important;color:#FFF !important;">Cones</th>
+                            <th class="text-center" style="background-color:#3498DB; !important;color:#FFF !important;">Total Bruto</th>
+                        </tr>
+                        <tr t-foreach="o.mrp_bom_line_ids" t-as="l">
+                            <td class="text-center">
+                                <span t-field="l.product_id"/>
+                            </td>
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                            </td>
+                            <td class="text-center">
+                                <span t-field="o.total_bruto"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        <div class="col-xs-6 pull-left">
+                            <!-- <span t-field="o.product_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;,'style':'width: 450px;height: 550px'}"/> -->
+                            <span t-field="o.gambar_sample" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;,'style':'width:450px ;height: 350px'}"/>
+                            <table class="table table-striped table-bordered">
+                                <tr t-if="o.keterangan">
+                                    <strong>Keterangan</strong>
+                                </tr>
+                                <tr t-if="o.keterangan">
+                                    <td>
+                                        <span t-field="o.keterangan"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class="col-xs-6 pull-left">
+                            <table class="table table-striped table-bordered" border='1'>
+                                <thead border='1'>
+                                    <tr>
+                                        <th rowspan='2' class="middle-align">Konstruksi</th>
+                                        <th colspan="2" class="text-center">Stretcth (cm)</th>
+                                        <th colspan="3" class="text-center">Relaxed (cm)</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">X</th>
+                                        <th class="text-center">Y</th>
+                                        <th class="text-center">X</th>
+                                        <th class="text-center">Y</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-if="o.gum_relaxed_x">
+                                        <td>Gum</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.gum_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.gum_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.leg_gum_relaxed_x">
+                                        <td>Leg Gum</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.leg_gum_atas_relaxed_x">
+                                        <td>Leg Gum Atas</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_atas_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_atas_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_atas_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_atas_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.leg_gum_bawah_relaxed_x">
+                                        <td>Leg Gum Bawah</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_bawah_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_bawah_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_bawah_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_bawah_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <!-- tambahan 190820-->
+                                    <tr t-if="o.leg_gum_tengah_relaxed_x">
+                                        <td>Leg Gum Tehah</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_tengah_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_gum_tengah_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_tengah_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_gum_tengah_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <!-- selesai tambahan 190820-->
+
+                                    <tr t-if="o.leg_relaxed_x">
+                                        <td>Leg</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.leg_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.leg_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.foot_relaxed_x">
+                                        <td>Foot</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.foot_gum_relaxed_x">
+                                        <td>Foot Gum</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_gum_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.foot_gum_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_gum_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.foot_gum_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.hell_relaxed_x">
+                                        <td>Heel</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.hell_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.hell_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.hell_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.hell_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <!-- tambahan 190820 -->
+                                    <tr t-if="o.gum_atas_relaxed_x">
+                                        <td>Gum Atas</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_atas_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_atas_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.gum_atas_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.hell_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.gum_bawah_relaxed_x">
+                                        <td>Gum Bawah</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_bawah_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_bawah_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.gum_bawah_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.hell_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="o.gum_bawah_relaxed_x">
+                                        <td>Gum Bawah</td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_bawah_stretch_x"/>
+                                        </td>
+                                        <td class="text-center" t-foreach="o.operator_mspsample_dev_line_ids" t-as="l">
+                                            <span t-field="l.gum_bawah_stretch_y"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.gum_bawah_relaxed_x"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-field="o.hell_relaxed_y"/>
+                                        </td>
+                                    </tr>
+                                    <!-- selesai tambahan 190820 -->
+                                </tbody>
+                            </table>
+                            <div style="padding-top:10px;">
+                                <table class="table table-sm table-striped table-bordered">
+                                    <thead style="display:table-row-group;">
+                                        <tr>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">KNITING</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">CONTI</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">INSPEKTING</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">PRINTING</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">SEWING</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">ANTI SLIP</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">EMBROIDERY</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">SETTING</th>
+                                            <th style="background-color:#3498DB; !important;color:#FFF !important; text-align:center;">PACKING</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="text-align:center;">
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing1" name="routing1" value="Kniting"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing2" name="routing2" value="Conti"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing3" name="routing3" value="Inspekting"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing4" name="routing4" value="Printing"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing5" name="routing5" value="Sewing"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing6" name="routing6" value="Anti_Slip"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing7" name="routing7" value="Embroidery"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing8" name="routing8" value="Setting"/>
+                                            </td>
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" id="routing9" name="routing9" value="Packing"/>
+                                            </td>
+                                        </tr>    
+                                    </tbody>
+                                </table>            
+                            </div>
+                            <img t-att-src="'/marel_in_samlpe_dev_2/static/description/kk.jpeg'" Style="width:250px;height:250px"/>
+                            <xpath expr="//p[@t-field='o.notes']" position="after">
+                                <div class="last-page" style="position:relative;font-size:12px;margin-top:100px;">
+                                <table>
+                                    <tr>
+                                        <td style="line-height: 1.6;" width="29%">
+                                            <br/><br/><br/>
+                                            <strong>Disetujui Oleh</strong>
+                                            <br/><br/><br/>
+                                            <strong>OPERATOR</strong>
+                                            <br/><br/><br/><br/> <br/><br/><br/>
+                                            (..................................)
+                                            <br/>
+                                                <br/> 
+                                        </td>
+                                        <td style="line-height: 1.6;" width="29%">
+                                            <br/><br/><br/>
+                                            <br/><br/><br/>
+                                            <strong>QC</strong>
+                                            <br/><br/><br/><br/> <br/><br/><br/>
+                                            (..................................)
+                                            <br/>
+                                                <br/> 
+                                        </td>
+                                        <td style="line-height: 1.6;" width="29%">
+                                            <br/><br/><br/>
+                                            <br/><br/><br/>
+                                            <strong>MARKETING</strong>
+                                            <br/><br/><br/><br/> <br/><br/><br/>
+                                            (..................................)
+                                            <br/>
+                                                <br/> 
+                                        </td>
+                                        <td style="text-align:left" width="23%">
+                                            <strong>Yogyakarta, <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')" /></strong>
+                                            <br/><br/><br/>
+                                            <strong>Acc</strong>
+                                            <br/><br/><br/>
+                                            <strong>MARKETING</strong>
+                                            <br/><br/><br/><br/> <br/><br/><br/>
+                                            (..................................)
+                                            <br/>
+                                                <br/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </xpath>                
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+
+            </t>
+        </template>
+        <!-- template semua record-->
+    </data>
+</odoo>

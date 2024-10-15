@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="msp_surat_jalan_report_doc">
+        <t t-call="web.external_layout" t-if="o.sj_report">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <table class="table table-sm o_main_table">
+                <tr style="height:20px">
+                    <td>Kode Dokumen</td>
+                    <td class="text-right">Halaman</td>
+                    <td class="text-right">No Revisi</td>
+                    <td class="text-right">Tgl Revisi </td>
+                    <td class="text-right">Tgl Efektif </td>
+                </tr>
+                <tr style="height:20px">
+                    <td>MSP/F/P/ADM/02.01</td>
+                    <td>HAL 1 dari 1</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>02 JANUARI 2019</td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <t>
+                        <t>
+                            <!--<t t-set="information_block">-->
+                            <div t-if="o.sale_id.partner_id">
+                                <strong>Customer Address:</strong>
+                                <p t-field="o.sale_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+                <div class="col-1"/>
+                <div class="col-5">
+                    <t>
+                        <!--<t t-set="address">-->
+                        <div t-if="o.partner_id">
+                            <strong>Shipping Address:</strong>
+                            <p t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2 t-if="o.state in ['draft','waiting','confirmed','assigned']">DRAFT SURAT JALAN 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <h2 t-if="o.state in ['done']">SURAT JALAN 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <h2 t-if="o.state == 'cancel'">CANCELLED SURAT JALAN 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <div class="row mt32 mb32">
+                    <div t-if="o.no_sj" class="col-auto col-3 mw-100 mb-2">
+                        <strong>No Surat Jalan :</strong>
+                        <p t-field="o.no_sj" style="font-size:22px;"/>
+                    </div>
+                    <!--<div t-if="o.no_bpb" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>No BPB :</strong>-->
+                    <!--    <p t-field="o.no_bpb" style="font-size:22px;"/>-->
+                    <!--</div>-->
+                    <!--<div t-if="o.no_spb" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>No SPB :</strong>-->
+                    <!--    <p t-field="o.no_spb" style="font-size:22px;"/>-->
+                    <!--</div>-->
+                    <div t-if="o.tgl_kirim" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Tanggal Kirim :</strong>
+                        <p t-field="o.tgl_kirim"/>
+                    </div>
+                    <div t-if="o.sale_id.client_order_ref" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Ref. Order:</strong>
+                        <p t-field="o.sale_id.client_order_ref"/>
+                    </div>
+                    <div t-if="o.origin" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Source :</strong>
+                        <p t-field="o.origin"/>
+                    </div>
+                    <div name="branch" t-if="o.branch_id" class="col-auto col-3 mw-100 mb-2" groups="base_branch_company.group_multi_branch">
+                        <strong>Cabang:</strong>
+                        <p t-field="o.branch_id"/>
+                    </div>
+                    <!--<div t-if="o.kurs" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Kurs:</strong>-->
+                    <!--    <p t-field="o.kurs"/>-->
+                    <!--</div>-->
+                    <!--<div t-if="o.jenis_kurs" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Jenis Kurs:</strong>-->
+                    <!--    <p t-field="o.jenis_kurs"/>-->
+                    <!--</div>-->
+                    <!--<div t-if="o.taxes_id" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Ppn:</strong>-->
+                    <!--    <p t-field="o.taxes_id"/>-->
+                    <!--</div>-->
+                </div>
+
+                <table>
+                    <!--<table class="table table-sm o_main_table">-->
+                    <thead>
+                        <tr class="border-black">
+                            <td width="50px">
+                                <strong>No</strong>
+                            </td>
+                            <td class="text-left" width="400px">
+                                <strong>Product</strong>
+                            </td>
+                            <td class="text-right" name="lot_serial" t-if="has_serial_number" width="100px">
+                                <strong>Lot/Serial Number</strong>
+                            </td>
+                            <td class="text-right" width="100px">
+                                <strong>Qty</strong>
+                            </td>
+                            <td class="text-right" width="50px">
+                                <strong>RB</strong>
+                            </td>
+                            <td class="text-right" width="50px">
+                                <strong>RK</strong>
+                            </td>
+                            <td class="text-right" width="200px">
+                                <strong>Keterangan</strong>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.move_line_ids.sorted(key=lambda m: m.move_id.id)" t-as="move_line">
+                            <td>
+                                <span t-esc="move_line_index+1"/>
+                            </td>
+                            <td class="text-left">
+                                <p>
+                                    <span t-field="move_line.move_id.sale_line_id.name"/>
+                                </p>
+                            </td>
+                            <t t-if="has_serial_number">
+                                <td class="text-right">
+                                    <table width="100%">
+                                        <tr>
+                                            <td class="text-right">
+                                                <span t-field="move_line.lot_id"/>
+                                                <t t-if="not move_line.lot_id">
+                                                    <span t-field="move_line.lot_name"/>
+                                                </t>
+                                            </td>
+                                            <td name="lot_qty" class="text-right">
+                                                <t t-if="move_line.product_qty">
+                                                    <span t-esc="'{0:.0f}'.format(move_line.product_qty)"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </t>
+                            <td class="text-right">
+                                <span t-esc="'{0:.0f}'.format(move_line.qty_done)"/>
+                                <span t-field="move_line.product_uom_id"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.rb"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.rk"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.keterangan_move"/>
+                            </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total Qty :</strong>
+                            <t t-set="total" t-value="sum([l.qty_done for l in o.move_line_ids])" />
+                            <span t-esc="total" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total RB :</strong>
+                            <t t-set="total_rb" t-value="sum([l.move_id.rb for l in o.move_line_ids])" />
+    									      <span t-esc="total_rb" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total RK :</strong>
+                            <t t-set="total_rk" t-value="sum([l.move_id.rk for l in o.move_line_ids])" />
+    									      <span t-esc="total_rk" />
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <table>
+                    <tr t-if="o.note">
+                        <td width="70px">Note :
+                        </td>
+                        <td>
+                            <span t-field="o.note"/>
+                        </td>
+                    </tr>
+                    <tr t-if="o.sale_id.note">
+                        <td width="70px">Note Sales:
+                        </td>
+                        <td>
+                            <span t-field="o.sale_id.note"/>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <strong>
+                        Maksimal komplain adalah 6 hari setelah barang diterima. Lebih dari itu kami anggap barang telah diterima dengan baik dan sesuai dengan yang dipesan.
+                    </strong>
+                </div>
+                <br/>
+                <table>
+                    <tr style="height:100px">
+                        <th width="20%" class="text-center">Dibuat Oleh:</th>
+                        <th width="20%" class="text-center">Disetujui Oleh:</th>
+                        <th width="20%" class="text-center">Menyetujui:</th>
+                        <th width="20%" class="text-right">Diterima Oleh :</th>
+                    </tr>
+                    <tr style="height:100px">
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.created_uid.digital_signature }}" style="width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.supervise_uid.digital_signature }}" style="width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.approval_uid.digital_signature }}" style="position:absolute; width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-right"/>
+                    </tr>
+                    <tr>
+                        <th width="20%" class="text-center">Gudang</th>
+                        <th width="20%" class="text-center">Adminitrasi/Akuntansi</th>
+                        <th width="20%" class="text-center">Pimpinan</th>
+                        <th width="20%" class="text-right">Customer</th>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <tr>
+                        <td width="280px">
+                        *Lembar 1 dan 2 : Pembukuan
+                        </td>
+                        <td width="280px">
+                        *Lembar 3 : Customer
+                        </td>
+                        <td width="280px">
+                        *Lembar 4 : Gudang
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="280px">
+                        *Lembar 1 dan 2 Kembali
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <td width="200px">
+                    PT Marel Sukses Pratama
+                    </td>
+                </table>
+                <!-- footer kop surat -->
+                <!-- <div class="footer">
+                    <div class="row">
+                        <div class="col-3 mb4">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 45px;" alt="Logo"/>
+                        </div>
+                        <div class="col-8 text-right" style="margin-top:22px;" t-field="o.company_id.report_header" name="moto"/>
+                    </div>
+                    <div t-if="o.company_id.logo or o.company_id.report_header" class="row zero_min_height">
+                        <div class="col-12">
+                            <div style="border-bottom: 1px solid black;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" name="company_address">
+                            <div t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                        </div>
+                        <div class="row justify-content-end mb16">
+                            <div class="col-4" name="right_box">
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px;" alt="Barcode"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 pull-right">
+                            <span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile"], "no_marker": True}' />
+                        </div>
+                    </div>
+                    <div class="row mt48 mb32">
+                        <div t-if="o.carrier_id" class="col-auto" name="div_origin">
+                            <strong>Carrier :</strong>
+                            <p t-field="o.carrier_id"/>
+                        </div>
+                        <div t-if="o.carrier_tracking_ref" class="col-auto" name="div_origin">
+                            <strong>Tracking Reference :</strong>
+                            <p t-field="o.carrier_tracking_ref"/>
+                        </div>
+                        <div t-if="o.origin" class="col-auto" name="div_origin">
+                            <strong>Sorce Doc :</strong>
+                            <p t-field="o.origin"/>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="oe_structure"/>
+            </div>
+        </t>
+
+        <t t-call="web.external_layout" t-if="o.bpb_report">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <table class="table table-sm o_main_table">
+                <tr style="height:20px">
+                    <td>Kode Dokumen</td>
+                    <td class="text-right">Halaman</td>
+                    <td class="text-right">No Revisi</td>
+                    <td class="text-right">Tgl Revisi </td>
+                    <td class="text-right">Tgl Efektif </td>
+                </tr>
+                <tr style="height:20px">
+                    <td>MSP/F/P/ADM/02.01</td>
+                    <td>HAL 1 dari 1</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>02 JANUARI 2019</td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <t>
+                        <t>
+                            <!--<t t-set="information_block">-->
+                            <div t-if="o.sale_id.partner_id">
+                                <strong>Customer Address:</strong>
+                                <p t-field="o.sale_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+                <div class="col-1"/>
+                <div class="col-5">
+                    <t>
+                        <!--<t t-set="address">-->
+                        <div t-if="o.partner_id">
+                            <strong>Shipping Address:</strong>
+                            <p t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2 t-if="o.state in ['draft','waiting','confirmed','assigned']">DRAFT BUKTI PENERIMAAN BARANG 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <h2 t-if="o.state in ['done']">BUKTI PENERIMAAN BARANG 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <h2 t-if="o.state == 'cancel'">Cancelled BUKTI PENERIMAAN BARANG 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <div class="row mt32 mb32">
+                    <!-- <div t-if="o.no_sj" class="col-auto col-3 mw-100 mb-2">
+                        <strong>No Surat Jalan :</strong>
+                        <p t-field="o.no_sj" style="font-size:22px;"/>
+                    </div> -->
+                    <div t-if="o.no_bpb" class="col-auto col-3 mw-100 mb-2">
+                       <strong>No BPB :</strong>
+                       <p t-field="o.no_bpb" style="font-size:22px;"/>
+                    </div>
+                    <!--<div t-if="o.no_spb" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>No SPB :</strong>-->
+                    <!--    <p t-field="o.no_spb" style="font-size:22px;"/>-->
+                    <!--</div>-->
+                    <div t-if="o.tgl_kirim" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Tanggal Kirim :</strong>
+                        <p t-field="o.tgl_kirim"/>
+                    </div>
+                    <div t-if="o.sale_id.client_order_ref" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Ref. Order:</strong>
+                        <p t-field="o.sale_id.client_order_ref"/>
+                    </div>
+                    <div t-if="o.origin" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Source :</strong>
+                        <p t-field="o.origin"/>
+                    </div>
+                    <div name="branch" t-if="o.branch_id" class="col-auto col-3 mw-100 mb-2" groups="base_branch_company.group_multi_branch">
+                        <strong>Cabang:</strong>
+                        <p t-field="o.branch_id"/>
+                    </div>
+                    <!--<div t-if="o.kurs" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Kurs:</strong>-->
+                    <!--    <p t-field="o.kurs"/>-->
+                    <!--</div>-->
+                    <!--<div t-if="o.jenis_kurs" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Jenis Kurs:</strong>-->
+                    <!--    <p t-field="o.jenis_kurs"/>-->
+                    <!--</div>-->
+                    <!--<div t-if="o.taxes_id" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Ppn:</strong>-->
+                    <!--    <p t-field="o.taxes_id"/>-->
+                    <!--</div>-->
+                </div>
+
+                <table>
+                    <!--<table class="table table-sm o_main_table">-->
+                    <thead>
+                        <tr class="border-black">
+                            <td width="50px">
+                                <strong>No</strong>
+                            </td>
+                            <td class="text-left" width="400px">
+                                <strong>Product</strong>
+                            </td>
+                            <td class="text-right" name="lot_serial" t-if="has_serial_number" width="100px">
+                                <strong>Lot/Serial Number</strong>
+                            </td>
+                            <td class="text-right" width="100px">
+                                <strong>Qty</strong>
+                            </td>
+                            <td class="text-right" width="50px">
+                                <strong>RB</strong>
+                            </td>
+                            <td class="text-right" width="50px">
+                                <strong>RK</strong>
+                            </td>
+                            <td class="text-right" width="200px">
+                                <strong>Keterangan</strong>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.move_line_ids.sorted(key=lambda m: m.move_id.id)" t-as="move_line">
+                            <td>
+                                <span t-esc="move_line_index+1"/>
+                            </td>
+                            <td class="text-left">
+                                <p>
+                                    <span t-field="move_line.move_id.sale_line_id.name"/>
+                                </p>
+                            </td>
+                            <t t-if="has_serial_number">
+                                <td class="text-right">
+                                    <table width="100%">
+                                        <tr>
+                                            <td class="text-right">
+                                                <span t-field="move_line.lot_id"/>
+                                                <t t-if="not move_line.lot_id">
+                                                    <span t-field="move_line.lot_name"/>
+                                                </t>
+                                            </td>
+                                            <td name="lot_qty" class="text-right">
+                                                <t t-if="move_line.product_qty">
+                                                    <span t-esc="'{0:.0f}'.format(move_line.product_qty)"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </t>
+                            <td class="text-right">
+                                <span t-esc="'{0:.0f}'.format(move_line.qty_done)"/>
+                                <span t-field="move_line.product_uom_id"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.rb"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.rk"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.keterangan_move"/>
+                            </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total Qty :</strong>
+                            <t t-set="total" t-value="sum([l.qty_done for l in o.move_line_ids])" />
+                            <span t-esc="total" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total RB :</strong>
+                            <t t-set="total_rb" t-value="sum([l.move_id.rb for l in o.move_line_ids])" />
+    									      <span t-esc="total_rb" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total RK :</strong>
+                            <t t-set="total_rk" t-value="sum([l.move_id.rk for l in o.move_line_ids])" />
+    									      <span t-esc="total_rk" />
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <table>
+                    <tr t-if="o.note">
+                        <td width="70px">Note :
+                        </td>
+                        <td>
+                            <span t-field="o.note"/>
+                        </td>
+                    </tr>
+                    <tr t-if="o.sale_id.note">
+                        <td width="70px">Note Sales:
+                        </td>
+                        <td>
+                            <span t-field="o.sale_id.note"/>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <strong>
+                        Maksimal komplain adalah 6 hari setelah barang diterima. Lebih dari itu kami anggap barang telah diterima dengan baik dan sesuai dengan yang dipesan.
+                    </strong>
+                </div>
+                <br/>
+                <table>
+                    <tr style="height:100px">
+                        <th width="20%" class="text-center">Dibuat Oleh:</th>
+                        <th width="20%" class="text-center">Disetujui Oleh:</th>
+                        <th width="20%" class="text-center">Menyetujui:</th>
+                        <th width="20%" class="text-right">Diterima Oleh :</th>
+                    </tr>
+                    <tr style="height:100px">
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.created_uid.digital_signature }}" style="width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.supervise_uid.digital_signature }}" style="width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.approval_uid.digital_signature }}" style="position:absolute; width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-right"/>
+                    </tr>
+                    <tr>
+                        <th width="20%" class="text-center">Gudang</th>
+                        <th width="20%" class="text-center">Adminitrasi/Akuntansi</th>
+                        <th width="20%" class="text-center">Pimpinan</th>
+                        <th width="20%" class="text-right">Customer</th>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <tr>
+                        <td width="280px">
+                        *Lembar 1 dan 2 : Pembukuan
+                        </td>
+                        <td width="280px">
+                        *Lembar 3 : Customer
+                        </td>
+                        <td width="280px">
+                        *Lembar 4 : Gudang
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="280px">
+                        *Lembar 1 dan 2 Kembali
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <td width="200px">
+                    PT Marel Sukses Pratama
+                    </td>
+                </table>
+                <!-- footer kop surat -->
+                <!-- <div class="footer">
+                    <div class="row">
+                        <div class="col-3 mb4">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 45px;" alt="Logo"/>
+                        </div>
+                        <div class="col-8 text-right" style="margin-top:22px;" t-field="o.company_id.report_header" name="moto"/>
+                    </div>
+                    <div t-if="o.company_id.logo or o.company_id.report_header" class="row zero_min_height">
+                        <div class="col-12">
+                            <div style="border-bottom: 1px solid black;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" name="company_address">
+                            <div t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                        </div>
+                        <div class="row justify-content-end mb16">
+                            <div class="col-4" name="right_box">
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px;" alt="Barcode"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 pull-right">
+                            <span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile"], "no_marker": True}' />
+                        </div>
+                    </div>
+                    <div class="row mt48 mb32">
+                        <div t-if="o.carrier_id" class="col-auto" name="div_origin">
+                            <strong>Carrier :</strong>
+                            <p t-field="o.carrier_id"/>
+                        </div>
+                        <div t-if="o.carrier_tracking_ref" class="col-auto" name="div_origin">
+                            <strong>Tracking Reference :</strong>
+                            <p t-field="o.carrier_tracking_ref"/>
+                        </div>
+                        <div t-if="o.origin" class="col-auto" name="div_origin">
+                            <strong>Sorce Doc :</strong>
+                            <p t-field="o.origin"/>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="oe_structure"/>
+            </div>
+        </t>
+
+        <t t-call="web.external_layout" t-if="o.spb_report">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <table class="table table-sm o_main_table">
+                <tr style="height:20px">
+                    <td>Kode Dokumen</td>
+                    <td class="text-right">Halaman</td>
+                    <td class="text-right">No Revisi</td>
+                    <td class="text-right">Tgl Revisi </td>
+                    <td class="text-right">Tgl Efektif </td>
+                </tr>
+                <tr style="height:20px">
+                    <td>MSP/F/P/ADM/02.01</td>
+                    <td>HAL 1 dari 1</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>02 JANUARI 2019</td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <t>
+                        <t>
+                            <!--<t t-set="information_block">-->
+                            <div t-if="o.sale_id.partner_id">
+                                <strong>Customer Address:</strong>
+                                <p t-field="o.sale_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+                <div class="col-1"/>
+                <div class="col-5">
+                    <t>
+                        <!--<t t-set="address">-->
+                        <div t-if="o.partner_id">
+                            <strong>Shipping Address:</strong>
+                            <p t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2 t-if="o.state in ['draft','waiting','confirmed','assigned']">DRAFT SURAT PENGANTAR BARANG 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <h2 t-if="o.state in ['done']">SURAT PENGANTAR BARANG 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <h2 t-if="o.state == 'cancel'">CANCELLED SURAT PENGANTAR BARANG 
+                                        <!-- #<span t-field="o.name"/> -->
+                </h2>
+                <div class="row mt32 mb32">
+                    <!-- <div t-if="o.no_sj" class="col-auto col-3 mw-100 mb-2">
+                        <strong>No Surat Jalan :</strong>
+                        <p t-field="o.no_sj" style="font-size:22px;"/>
+                    </div> -->
+                    <!--<div t-if="o.no_bpb" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>No BPB :</strong>-->
+                    <!--    <p t-field="o.no_bpb" style="font-size:22px;"/>-->
+                    <!--</div>-->
+                    <div t-if="o.no_spb" class="col-auto col-3 mw-100 mb-2">
+                       <strong>No SPB :</strong>
+                       <p t-field="o.no_spb" style="font-size:22px;"/>
+                    </div>
+                    <div t-if="o.tgl_kirim" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Tanggal Kirim :</strong>
+                        <p t-field="o.tgl_kirim"/>
+                    </div>
+                    <div t-if="o.sale_id.client_order_ref" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Ref. Order:</strong>
+                        <p t-field="o.sale_id.client_order_ref"/>
+                    </div>
+                    <div t-if="o.origin" class="col-auto col-3 mw-100 mb-2">
+                        <strong>Source :</strong>
+                        <p t-field="o.origin"/>
+                    </div>
+                    <div name="branch" t-if="o.branch_id" class="col-auto col-3 mw-100 mb-2" groups="base_branch_company.group_multi_branch">
+                        <strong>Cabang:</strong>
+                        <p t-field="o.branch_id"/>
+                    </div>
+                    <!--<div t-if="o.kurs" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Kurs:</strong>-->
+                    <!--    <p t-field="o.kurs"/>-->
+                    <!--</div>-->
+                    <!--<div t-if="o.jenis_kurs" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Jenis Kurs:</strong>-->
+                    <!--    <p t-field="o.jenis_kurs"/>-->
+                    <!--</div>-->
+                    <!--<div t-if="o.taxes_id" class="col-auto col-3 mw-100 mb-2">-->
+                    <!--    <strong>Ppn:</strong>-->
+                    <!--    <p t-field="o.taxes_id"/>-->
+                    <!--</div>-->
+                </div>
+
+                <table>
+                    <!--<table class="table table-sm o_main_table">-->
+                    <thead>
+                        <tr class="border-black">
+                            <td width="50px">
+                                <strong>No</strong>
+                            </td>
+                            <td class="text-left" width="400px">
+                                <strong>Product</strong>
+                            </td>
+                            <td class="text-right" name="lot_serial" t-if="has_serial_number" width="100px">
+                                <strong>Lot/Serial Number</strong>
+                            </td>
+                            <td class="text-right" width="100px">
+                                <strong>Qty</strong>
+                            </td>
+                            <td class="text-right" width="50px">
+                                <strong>RB</strong>
+                            </td>
+                            <td class="text-right" width="50px">
+                                <strong>RK</strong>
+                            </td>
+                            <td class="text-right" width="200px">
+                                <strong>Keterangan</strong>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.move_line_ids.sorted(key=lambda m: m.move_id.id)" t-as="move_line">
+                            <td>
+                                <span t-esc="move_line_index+1"/>
+                            </td>
+                            <td class="text-left">
+                                <p>
+                                    <span t-field="move_line.move_id.sale_line_id.name"/>
+                                </p>
+                            </td>
+                            <t t-if="has_serial_number">
+                                <td class="text-right">
+                                    <table width="100%">
+                                        <tr>
+                                            <td class="text-right">
+                                                <span t-field="move_line.lot_id"/>
+                                                <t t-if="not move_line.lot_id">
+                                                    <span t-field="move_line.lot_name"/>
+                                                </t>
+                                            </td>
+                                            <td name="lot_qty" class="text-right">
+                                                <t t-if="move_line.product_qty">
+                                                    <span t-esc="'{0:.0f}'.format(move_line.product_qty)"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </t>
+                            <td class="text-right">
+                                <span t-esc="'{0:.0f}'.format(move_line.qty_done)"/>
+                                <span t-field="move_line.product_uom_id"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.rb"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.rk"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="move_line.move_id.keterangan_move"/>
+                            </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total Qty :</strong>
+                            <t t-set="total" t-value="sum([l.qty_done for l in o.move_line_ids])" />
+                            <span t-esc="total" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total RB :</strong>
+                            <t t-set="total_rb" t-value="sum([l.move_id.rb for l in o.move_line_ids])" />
+    									      <span t-esc="total_rb" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="7">
+                            <strong>Total RK :</strong>
+                            <t t-set="total_rk" t-value="sum([l.move_id.rk for l in o.move_line_ids])" />
+    									      <span t-esc="total_rk" />
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <table>
+                    <tr t-if="o.note">
+                        <td width="70px">Note :
+                        </td>
+                        <td>
+                            <span t-field="o.note"/>
+                        </td>
+                    </tr>
+                    <tr t-if="o.sale_id.note">
+                        <td width="70px">Note Sales:
+                        </td>
+                        <td>
+                            <span t-field="o.sale_id.note"/>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <strong>
+                        Maksimal komplain adalah 6 hari setelah barang diterima. Lebih dari itu kami anggap barang telah diterima dengan baik dan sesuai dengan yang dipesan.
+                    </strong>
+                </div>
+                <br/>
+                <table>
+                    <tr style="height:100px">
+                        <th width="20%" class="text-center">Dibuat Oleh:</th>
+                        <th width="20%" class="text-center">Disetujui Oleh:</th>
+                        <th width="20%" class="text-center">Menyetujui:</th>
+                        <th width="20%" class="text-right">Diterima Oleh :</th>
+                    </tr>
+                    <tr style="height:100px">
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.created_uid.digital_signature }}" style="width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.supervise_uid.digital_signature }}" style="width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-center">
+                            <img t-attf-src="data:image/png;base64,{{ o.approval_uid.digital_signature }}" style="position:absolute; width:200px; height:100px;"/>
+                        </th>
+                        <th width="20%" class="text-right"/>
+                    </tr>
+                    <tr>
+                        <th width="20%" class="text-center">Gudang</th>
+                        <th width="20%" class="text-center">Adminitrasi/Akuntansi</th>
+                        <th width="20%" class="text-center">Pimpinan</th>
+                        <th width="20%" class="text-right">Customer</th>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <tr>
+                        <td width="280px">
+                        *Lembar 1 dan 2 : Pembukuan
+                        </td>
+                        <td width="280px">
+                        *Lembar 3 : Customer
+                        </td>
+                        <td width="280px">
+                        *Lembar 4 : Gudang
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="280px">
+                        *Lembar 1 dan 2 Kembali
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table>
+                    <td width="200px">
+                    PT Marel Sukses Pratama
+                    </td>
+                </table>
+                <!-- footer kop surat -->
+                <!-- <div class="footer">
+                    <div class="row">
+                        <div class="col-3 mb4">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 45px;" alt="Logo"/>
+                        </div>
+                        <div class="col-8 text-right" style="margin-top:22px;" t-field="o.company_id.report_header" name="moto"/>
+                    </div>
+                    <div t-if="o.company_id.logo or o.company_id.report_header" class="row zero_min_height">
+                        <div class="col-12">
+                            <div style="border-bottom: 1px solid black;"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" name="company_address">
+                            <div t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                        </div>
+                        <div class="row justify-content-end mb16">
+                            <div class="col-4" name="right_box">
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px;" alt="Barcode"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 pull-right">
+                            <span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone", "mobile"], "no_marker": True}' />
+                        </div>
+                    </div>
+                    <div class="row mt48 mb32">
+                        <div t-if="o.carrier_id" class="col-auto" name="div_origin">
+                            <strong>Carrier :</strong>
+                            <p t-field="o.carrier_id"/>
+                        </div>
+                        <div t-if="o.carrier_tracking_ref" class="col-auto" name="div_origin">
+                            <strong>Tracking Reference :</strong>
+                            <p t-field="o.carrier_tracking_ref"/>
+                        </div>
+                        <div t-if="o.origin" class="col-auto" name="div_origin">
+                            <strong>Sorce Doc :</strong>
+                            <p t-field="o.origin"/>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+</odoo>

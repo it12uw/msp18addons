@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_marelin_samlpe_dev_list_all,access_marelin_samlpe_dev_list_all,model_marelin_samlpe_dev_list,base.group_user,1,0,0,0
+access_marelin_samlpe_dev_all,access_marelin_samlpe_dev_all,model_marelin_samlpe_dev,base.group_user,1,0,0,0

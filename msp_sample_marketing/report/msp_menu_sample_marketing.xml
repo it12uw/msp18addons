@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_pengajuan_sample" model="ir.actions.report">
+            <field name="name">Report Pengajuan Sample</field>
+            <field name="model">msp.sample.marketing</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">msp_sample_marketing.msp_sample_marketing_doc</field>
+            <field name="report_file">msp_sample_marketing.msp_sample_marketing_doc</field>
+            <field name="print_report_name">'REPORT - %s' % object.name</field>
+            <field name="binding_model_id" ref="model_msp_sample_marketing"/>
+            <field name="binding_type">report</field>
+        </record>
+     </data> 
+</odoo>

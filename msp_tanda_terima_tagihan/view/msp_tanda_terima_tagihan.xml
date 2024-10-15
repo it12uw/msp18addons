@@ -37,6 +37,7 @@
                         <notebook>
                             <page string="Keterangan">
                                 <field name="msp_tanda_terima_tagihan_line_ids">
+
                                     <list string="Keterangan" editable="bottom">
                                         <field name="keterangan"/>
                                         <field name="nominal" />

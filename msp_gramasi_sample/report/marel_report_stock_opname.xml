@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flectra>
+    <data noupdate="0">
+
+        <report
+            string="Stock Opname Report"
+            id="action_report_marel_report_stock_opname_doc"
+            model="product.template"
+            report_type="qweb-pdf"
+            name="marel_in_report_stock_opname.report_marel_report_stock_opname_doc"
+            file="product.report_marel_report_stock_opname_doc"
+            />
+
+    </data>
+</flectra>

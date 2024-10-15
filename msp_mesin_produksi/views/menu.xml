@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="action_mesin_marel_produksi_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Mesin Produksi Marel</field>
+            <field name="res_model">mesin.marel.produksi</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+					Click to add Data Mesin
+                </p>
+            </field>
+        </record>
+        <record id="action_nama_teknisi_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Nama Teknisi</field>
+            <field name="res_model">nama.teknisi</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+					Click to add Data Teknisi
+                </p>
+            </field>
+        </record>
+        <record id="action_jenis_kerusakan_mesin_marel_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Jenis Kerusakan Mesin Marel</field>
+            <field name="res_model">jenis.kerusakan.mesinmarel</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+					Click to add Data Mesin
+                </p>
+            </field>
+        </record>
+        <record id="action_kerusakan_mesin_list_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">List Kerusakan Mesin</field>
+            <field name="res_model">kerusakan.list.mesin</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_todo': True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+					Click to add List Mesin Rusak
+                </p>
+            </field>
+        </record>
+        <record id="action_merk_mesin" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Merk Mesin</field>
+            <field name="res_model">merk.mesin.produksi</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+					Click to add List Merk Mesin
+                </p>
+            </field>
+        </record>
+        <record id="action_type_mesin" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Type Mesin</field>
+            <field name="res_model">type.mesin.produksi</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+					Click to add List Type Mesin
+                </p>
+            </field>
+        </record>
+        <!-- menu utama header -->
+        <menuitem id="menu_mesin_dan_kerusakan" name="Mesin Produksi" web_icon="msp_mesin_produksi,static/description/icon.png" sequence="200"/>
+        <!-- data sub header-->
+        <menuitem id="menu_mesin" name="Data Mesin" parent="menu_mesin_dan_kerusakan" sequence="50"/>
+        <!-- link menu -->
+        <menuitem id="menu_link_data_mesin" name="Data Nama Mesin" parent="menu_mesin" action="action_mesin_marel_produksi_window" sequence="60"/>
+        <menuitem id="menu_link_data_nama_teknisi" name="Nama Teknisi" parent="menu_mesin" action="action_nama_teknisi_window" sequence="100"/>
+        <menuitem id="menu_link_data_kerusakan_mesin" name="Jenis Kerusakan" parent="menu_mesin" action="action_jenis_kerusakan_mesin_marel_window" sequence="70"/>
+        <menuitem id="menu_merk_type_mesin" name="Merk Mesin" parent="menu_mesin" action="action_merk_mesin" sequence="105"/>
+        <menuitem id="menu_type_mesin" name="Type Mesin" parent="menu_mesin" action="action_type_mesin" sequence="110"/>
+        <!-- data sub header-->
+        <menuitem id="menu_list_mesin_yang_perlu_perbaikan" name="List Kerusakkan Mesin" parent="menu_mesin_dan_kerusakan" sequence="50"/>
+        <!-- link menu -->
+        <menuitem id="menu_link_data_kerusakan_mesin_list" name="List Kerusakkan Mesin" parent="menu_list_mesin_yang_perlu_perbaikan" action="action_kerusakan_mesin_list_window" sequence="80"/>
+    </data>
+</odoo>

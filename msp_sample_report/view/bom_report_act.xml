@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- create action untuk report -->
+    <report 
+        string="Permintaan Benang" 
+        id="action_smp_r_prmntn_benang" 
+        model="marelin.samlpe.dev2" 
+        name="msp_sample_report.smp_r_prmntn_benang"
+        file="msp_sample_report.bom_report_act" 
+        report_type="qweb-pdf"
+    />
+
+    <report 
+        string="Permintaan Aksesoris" 
+        id="action_smp_r_prmntn_aksesoris" 
+        model="marelin.samlpe.dev2" 
+        name="msp_sample_report.smp_r_prmntn_aksesoris"
+        file="msp_sample_report.bom_report_act" 
+        report_type="qweb-pdf"
+    />
+</odoo>
