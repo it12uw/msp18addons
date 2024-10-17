@@ -20,6 +20,7 @@ class SaleImportWizard(models.TransientModel):
 
     file_data = fields.Binary(string='File CSV', required=True)
     filename = fields.Char(string='Filename')
+    marketplace_id = fields.Many2one('market.place', string='Marketplace', required=True)
 
     def _parse_file(self):
         data = base64.b64decode(self.file_data)
@@ -177,6 +178,7 @@ class SaleImportWizard(models.TransientModel):
             'city': row.get('Kota/Kabupaten'),
             'province': row.get('Provinsi'),
             'order_completion_time': self._parse_datetime(row.get('Waktu Pesanan Selesai')),
+            'sale_marketplace': self.marketplace_id.id, 
         }
 
         if order:
@@ -245,7 +247,7 @@ class SaleImportWizard(models.TransientModel):
             'type': 'ir.actions.act_window',
             'name': _('Imported Sales Orders'),
             'res_model': 'sale.order',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('id', 'in', created_orders.ids)],
             'context': {'create': False},
         }
