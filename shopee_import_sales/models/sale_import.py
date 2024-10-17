@@ -57,6 +57,7 @@ class SaleOrder(models.Model):
     province = fields.Char(string='Provinsi')
     order_completion_time = fields.Datetime(string='Waktu Pesanan Selesai')
     amount_total = fields.Float(string='Estimasi Total Penghasilan', readonly=True, compute='_compute_amounts')
+    sale_marketplace = fields.Many2one('market.place', string='Marketplace')
     
 
     # Untuk Odoo 17 fungsi _amount_all berubah menjadi _compute_amounts
@@ -105,7 +106,7 @@ class SaleOrder(models.Model):
             for picking in pickings:
                 picking.carrier_tracking_ref = order.nomor_pesanan
         return res            
-
+    
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
     
@@ -120,12 +121,12 @@ class SaleOrderLine(models.Model):
     biaya_administrasi = fields.Float(string='Biaya Administrasi', digits=(16,6))
     biaya_layanan = fields.Float(string='Biaya Layanan (Termasuk PPN 11%)', digits=(16,6))
     total = fields.Monetary(string='Sub Total', compute='_compute_amount', store=True)
-
+    
     @api.depends('price_unit', 'discount', 'product_uom_qty', 'tax_id')
     def _compute_amount(self):
         for line in self:
             res = super(SaleOrderLine, self)._compute_amount()
-
+    
     @api.onchange('original_price')
     def _onchange_original_price(self):
         if self.original_price:
