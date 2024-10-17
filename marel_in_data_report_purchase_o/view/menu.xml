@@ -1,0 +1,31 @@
+<odoo>
+	<data>
+
+		<record id="action_in_marel_kode_dokumen_list" model="ir.actions.act_window">
+			<field name="name">Marel Kode Dokumen</field>
+			<field name="res_model">inmarel.kode.dokumen</field>
+			<field name="view_mode">list,form,group</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to add Documents
+				</p>
+			</field>
+		</record>
+
+		<menuitem id="kode_doc_0"
+			name="Kode Dokumen"
+			sequence="120"/>
+
+		<menuitem id="kode_doc_1"
+			name="Dokumen"
+			parent="kode_doc_0"
+			sequence="120"/>
+		<!-- sub menu -->
+		<menuitem id="menu_kode_doc"
+			name="Data Kode Dokumen"
+			parent="kode_doc_1"
+			action="action_in_marel_kode_dokumen_list"
+			sequence="120"/>
+
+	</data>
+</odoo>
